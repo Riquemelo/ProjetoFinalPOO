@@ -10,7 +10,7 @@ public class Database {
         if(connection == null){
             try{
                 Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-                String url = "jdbc:derby://localhost:1527/ProjetoHealthcare;create=true";
+                String url = "jdbc:derby:c:/derby/ProjetoHealthcare;create=true";
                 connection = DriverManager.getConnection(url);
                 connectionException = null;
             }catch(Exception ex){
