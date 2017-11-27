@@ -11,11 +11,16 @@ public class DatabaseCreatorListener implements ServletContextListener {
    private void createMedicoTable(Statement s) {
       try {
          s.execute("CREATE TABLE medico(\n"
-                 + "    cd_crm_medico INTEGER PRIMARY KEY\n"
+                 + "    cd_medico INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
+                 + "    , cd_crm_medico INTEGER\n"
                  + "    , nm_medico VARCHAR(50) NOT NULL\n"
+                 + "    , nm_email VARCHAR(50) NOT NULL\n"
                  + "    , nm_especializacao VARCHAR(50)  NOT NULL\n"
-                 + "    , hr_atendimento_inicial TIME NOT NULL"
-                 + "    , hr_atendimento_final TIME NOT NULL"
+                 + "    , dt_nascimento DATE NOT NULL\n"
+                 + "    , cd_telefone VARCHAR(10) NOT NULL\n"
+                 + "    , nm_endereco VARCHAR(100) NOT NULL\n"
+                 + "    , nm_cidade VARCHAR(100) NOT NULL\n"
+                 + "    , nm_estado VARCHAR(50) NOT NULL"
                  + ")");
          System.out.println("Criada tabela medico.");
       } catch (Exception ex2) {
@@ -26,10 +31,16 @@ public class DatabaseCreatorListener implements ServletContextListener {
    private void createPacienteTable(Statement s) {
       try {
          s.execute("CREATE TABLE paciente(\n"
-                 + "    cd_id_paciente INTEGER PRIMARY KEY\n"
+                 + "    cd_paciente INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
                  + "    , nm_name VARCHAR(100) NOT NULL\n"
+                 + "    , nm_email VARCHAR(100) NOT NULL\n"
+                 + "    , nm_endereco VARCHAR(100) NOT NULL\n"
+                 + "    , nm_cidade VARCHAR(100) NOT NULL\n"
+                 + "    , nm_estado VARCHAR(50) NOT NULL\n"
                  + "    , cd_registro_geral VARCHAR(13) NOT NULL\n"
+                 + "    , cd_cpf VARCHAR(11) NOT NULL\n"
                  + "    , cd_telefone VARCHAR(10) NOT NULL\n"
+                 + "    , dt_nascimento DATE NOT NULL"
                  + ")");
          System.out.println("Criada tabela paciente.");
       } catch (Exception ex2) {
@@ -40,11 +51,12 @@ public class DatabaseCreatorListener implements ServletContextListener {
    private void createConsultaTable(Statement s) {
       try {
          s.execute("CREATE TABLE consulta(\n"
-                 + "    cd_consulta INTEGER PRIMARY KEY"
-                 + "    , cd_id_paciente INTEGER NOT NULL\n"
-                 + "    , cd_crm_medico INTEGER NOT NULL\n"
-                 + "    , hr_consulta TIME NOT NULL\n"
-                 + "    , dt_consulta DATE NOT NULL\n"
+                 + "    cd_consulta INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
+                 + "    , cd_paciente INTEGER NOT NULL\n"
+                 + "    , cd_medico INTEGER NOT NULL\n"
+                 + "    , hr_consulta TIMESTAMP NOT NULL\n"
+                 + "    , dt_consulta TIMESTAMP NOT NULL\n"
+                 + "    , vl_consulta NUMERIC(10,2) NOT NULL"
                  + ")");
          System.out.println("Criada tabela consulta.");
       } catch (Exception ex2) {
@@ -55,7 +67,7 @@ public class DatabaseCreatorListener implements ServletContextListener {
    private void createUsuarioTable(Statement s) {
       try {
          s.execute("CREATE TABLE usario(\n"
-                 + "    cd_usuario INTEGER PRIMARY KEY"
+                 + "    cd_usuario INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
                  + "    , nm_usuario VARCHAR(50)\n"
                  + "    , nm_login_usuario VARCHAR(50) NOT NULL\n"
                  + "    , cd_hashpass VARCHAR(200) NOT NULL"
