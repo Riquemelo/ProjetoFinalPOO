@@ -7,21 +7,21 @@
 <%@page import="br.com.fatecpg.project.User"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Healthcare</title>
-    </head>
-    <body>
-        <%@include file="WEB-INF/jspf/header.jspf" %>
-        
-        <form method="post"> 
-            Login: 
-            <input type="text" name="login"/><br/><br/>
-            Senha:
-            <input type="password" name="pass"/><br/><br/>
-            <input type="submit" name="Entrar" value="Entrar"/>
-        </form>
-        
-        <%@include file="WEB-INF/jspf/footer.jspf" %>
-    </body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Healthcare - Index</title>
+  </head>
+  <body>
+    <%@include file="WEB-INF/jspf/header.jspf" %>
+
+    <form method="post">
+      Login:
+      <input type="text" name="login"/><br/><br/>
+      Senha:
+      <input type="password" name="pass"/><br/><br/>
+      <input type="submit" name="Entrar" value="Entrar"/>
+    </form>
+
+    <%@include file="WEB-INF/jspf/footer.jspf" %>
+  </body>
 </html>

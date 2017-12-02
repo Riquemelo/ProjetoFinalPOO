@@ -66,18 +66,19 @@ public class DatabaseCreatorListener implements ServletContextListener {
 
    private void createUsuarioTable(Statement s) {
       try {
-         s.execute("CREATE TABLE usario(\n"
+         s.execute("CREATE TABLE usuario(\n"
                  + "    cd_usuario INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
                  + "    , nm_usuario VARCHAR(50)\n"
                  + "    , nm_login_usuario VARCHAR(50) NOT NULL\n"
                  + "    , cd_hashpass VARCHAR(200) NOT NULL"
                  + ")");
          System.out.println("Criada tabela usuario.");
-         s.execute("INSERT INTO usuario VALUES(\n"
-                 + "    1 "
-                 + "    , 'admin'"
-                 + "    , 'admin'"
-                 + "    , '123456'");
+         s.execute("INSERT INTO usuario VALUES("
+                 + "default"
+                 + ", 'Administrador do Sistema'"
+                 + ", 'admin'"
+                 + ", '" + "123456".hashCode() + "'"
+                 + ")");
       } catch (Exception ex2) {
          System.out.println("Erro ao criar o usuario: " + ex2.getMessage());
       }
