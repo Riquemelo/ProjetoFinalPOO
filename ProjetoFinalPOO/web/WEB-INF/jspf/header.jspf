@@ -1,6 +1,33 @@
-<%-- any content can be specified here e.g.: --%>
+
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="br.com.fatecpg.project.Database"%>
+<%@page import="br.com.fatecpg.project.User"%>
+
 <%@ page pageEncoding="UTF-8" %>
 <div align="center">
     <h1>Healthcare</h1>
     <hr/><br/>
+    <%
+    if(request.getParameter("do-logoff")!= null){
+        session.removeAttribute("me.id");
+        session.removeAttribute("me.name");
+        session.removeAttribute("me.login");
+        session.removeAttribute("me.passwordHash");
+        response.sendRedirect(request.getContextPath()+"/home.jsp");
+    }
+    %>
+    <%if(session.getAttribute("me.login")!=null){%>
+    <form>
+        Bem vindo, <%=session.getAttribute("me.nome")%>!
+        <input type="submit" name="do-logoff" value="Sair"/>
+    <%}%>
+    <%if(Database.getConnectionException()!=null){%>
+    <div style="color: red;">
+        Erro ao tentar conexão com o banco de dados:
+        <%=Database.getConnectionException().getMessage()%>
+    </div>
+    <%}%>
 </div>

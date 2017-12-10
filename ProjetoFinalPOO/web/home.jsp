@@ -1,9 +1,3 @@
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="br.com.fatecpg.project.Database"%>
-<%@page import="br.com.fatecpg.project.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -48,6 +42,8 @@
       <input type="password" name="pass"/><br/><br/>
       <input type="submit" name="do-login" value="Entrar"/>
     </form>
+    <br/>
+    <a href="cadastroUser.jsp">Cadastre-se</a>
 
     <%@include file="WEB-INF/jspf/footer.jspf" %>
   </body>
