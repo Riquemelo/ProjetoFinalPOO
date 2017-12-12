@@ -47,12 +47,12 @@
     %>
     <%if(session.getAttribute("me.login")!=null){%>
     <form>
-        Bem vindo, <%=session.getAttribute("me.nome")%>!
-        <input type="submit" name="do-logoff" value="Sair"/>
+        <h6 style='font-style:italic'> Bem Vindo, <%=session.getAttribute("me.nome")%>! </h6>
+        <input type="submit" name="do-logoff" value="Sair" button type="button" class="btn btn-outline-dark"/>
     <%}%>
     <%if(Database.getConnectionException()!=null){%>
     <div style="color: red;">
-        Erro ao tentar conexão com o banco de dados:
+        <h6 style='font-style:italic'> Erro ao tentar conexão com o banco de dados: </h6>
         <%=Database.getConnectionException().getMessage()%>
     </div>
     <%}%>

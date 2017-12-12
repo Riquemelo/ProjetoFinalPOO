@@ -32,14 +32,15 @@
             <div style="color: red;"><%=loginErrorMessage%></div>
             <%}%>
             <%if (session.getAttribute("me.login") != null) {%>
-            <a href="cadastroMedico.jsp">Cadastrar Medico</a> |
-            <a href="cadastroPaciente.jsp">Cadastrar Paciente</a> |
-            <a href="cadastroConsulta.jsp">Cadastrar Consulta</a>
-            <br/><br/>
-            <a href="listaMedico.jsp">Médicos</a> |
-            <a href="listaPaciente.jsp">Lista de Pacientes</a> |
-            <a href="consultas.jsp">Calendário de Consultas</a>
-            <br/>
+            <br><br>
+            <button button type="button" class="btn btn-outline-dark"><a href="cadastroMedico.jsp">Cadastrar Medico</a></button>  
+            <button button type="button" class="btn btn-outline-dark"><a href="cadastroPaciente.jsp">Cadastrar Paciente</a></button> 
+            <button button type="button" class="btn btn-outline-dark"><a href="cadastroConsulta.jsp">Cadastrar Consulta</a></button>
+            <br/><br/><br>
+            <button button type="button" class="btn btn-outline-dark"><a href="listaMedico.jsp">Médicos</a></button> 
+            <button button type="button" class="btn btn-outline-dark"><a href="listaPaciente.jsp">Lista de Pacientes</a></button> 
+            <button button type="button" class="btn btn-outline-dark"><a href="consultas.jsp">Calendário de Consultas</a></button>
+            <br/><br><br><br>
             <%} else {%>
             <form method="post">
                 <h2 style='font-style:italic'>Login</h2> <br>
