@@ -19,11 +19,13 @@
    if (request.getParameter("cadastroMedico") != null) {
       SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
        
-      String registerCRM = request.getParameter("crm");
+      String CRM = request.getParameter("crm");
+      String UF = request.getParameter("uf");
+      String registerCRM = CRM + "-" + UF;
       String registerNome = request.getParameter("nomeMedico");
       String registerEmail = request.getParameter("emailMedico");
       String registerEspec = request.getParameter("especializacao");
-      java.sql.Date registerDtNasc = new java.sql.Date(format.parse
+      Date registerDtNasc = new Date(format.parse
                             (request.getParameter("dataNascimento")).getTime());
       String registerTel = request.getParameter("telefoneMedico");
       String registerEnd = request.getParameter("enderecoMedico");
@@ -34,7 +36,7 @@
       try {
          User adm = User.getUser(admLogin, admPass);
          Medico m = Medico.checkMedico(registerCRM);
-         if (adm != null || session.getAttribute("me.login") == "admin") {
+         if (adm != null) {
             if(m == null){
                 m.addMedico(registerCRM, registerNome, registerEmail,
                             registerEspec, registerDtNasc, registerTel,
@@ -50,7 +52,11 @@
          registerErrorMessage = ex.getMessage();
       }
    }
-
+   
+    String estado[] = {"", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",
+    "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS",
+    "RR", "SC", "SE", "SP", "TO"};
+    
 %>
 <html>
     <head>
@@ -70,31 +76,41 @@
         
         <form method="post">
                 CRM:<br/>
-                <input type="text" name="crm"><br/>
+                <input required type="text" name="crm" maxlength="10">
+                UF:
+                <select name="uf" >
+                    <%for (int c = 0; c <= 27; c++){%>
+                       <option value="<%=estado[c]%>"><%=estado[c]%></option>
+                    <%}%>
+                </select><br/>
                 Nome:<br/>
-                <input type="text" name="nomeMedico"><br/>
+                <input required type="text" name="nomeMedico"/><br/>
                 Email:<br/>
-                <input type="email" name="emailMedico"><br/>
+                <input required type="email" name="emailMedico"/><br/>
                 Especialização:<br/>
-                <input type="text" name="especializacao"><br/>
+                <input required type="text" name="especializacao"/><br/>
                 Data de Nascimento:<br/>
-                <input type="text" name="dataNascimento"><br/>
+                <input required type="text" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" name="dataNascimento"/>
+                <i>Utilize o formato dd/mm/aaaa</i><br/>
                 Telefone:<br/>
-                <input type="tel" name="telefoneMedico"><br/>
+                <input required type="text" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" name="telefoneMedico"/>
+                <i>Utilize o formato (00)0000-0000</i><br/>
                 Endereço:<br/>
-                <input type="text" name="enderecoMedico"><br/>
+                <input required type="text" name="enderecoMedico"/><br/>
                 Cidade:<br/>
-                <input type="text" name="cidadeMedico"><br/>
-                Estado:<br/>
-                <input type="text" name="estadoMedico"><br/><br/>
-                <%if (session.getAttribute("me.login") == "admin"){%>
+                <input required type="text" name="cidadeMedico"/>
+                Estado:
+                <select name="estadoMedico" >
+                    <%for (int c = 0; c <= 27; c++){%>
+                       <option value="<%=estado[c]%>"><%=estado[c]%></option>
+                    <%}%>
+                </select><br/><br/>
                     Login do Administrador:<br/>
                     <input type="text" name="adminLogin"><br/>
                     Senha do Administrador:<br/>
                     <input type="password" name="adminPass"><br/><br/>
-                <%}%>
                 
-            <input type="submit" name="cadastroMedico" value="Cadastrar">
+            <input type="submit" name="cadastroMedico" value="Cadastrar"/>
         </form>
         <br/><br/>
         <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 

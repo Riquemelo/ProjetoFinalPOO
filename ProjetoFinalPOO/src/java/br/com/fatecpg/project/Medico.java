@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Medico {
    private int id;
-   private int crm;
+   private String crm;
    private String nome;
    private String email;
    private String espec;
@@ -30,7 +30,7 @@ public class Medico {
         ResultSet rs = s.executeQuery();
         if(rs.next()){
             m = new Medico(rs.getInt("cd_medico"),
-                 rs.getInt("cd_crm_medico"),
+                 rs.getString("cd_crm_medico"),
                  rs.getString("nm_medico"),
                  rs.getString("nm_email"),
                  rs.getString("nm_especializacao"),
@@ -51,7 +51,7 @@ public class Medico {
         ResultSet rs = s.executeQuery("SELECT * FROM medico");
         while(rs.next()){
             Medico m = new Medico(rs.getInt("cd_medico"),
-                 rs.getInt("cd_crm_medico"),
+                 rs.getString("cd_crm_medico"),
                  rs.getString("nm_medico"),
                  rs.getString("nm_email"),
                  rs.getString("nm_especializacao"),
@@ -68,16 +68,16 @@ public class Medico {
         return list;
     }
    
-   public static Medico checkMedico(String Scrm) throws SQLException {
+   public static Medico checkMedico(String crm) throws SQLException {
       String SQL = "SELECT * FROM medico WHERE cd_crm_medico=?";
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
-      int crm = Integer.parseInt(Scrm);
-      s.setInt(1, crm);
+      
+      s.setString(1, crm);
       ResultSet rs = s.executeQuery();
       Medico m = null;
       if (rs.next()) {
          m = new Medico(rs.getInt("cd_medico"),
-                 rs.getInt("cd_crm_medico"),
+                 rs.getString("cd_crm_medico"),
                  rs.getString("nm_medico"),
                  rs.getString("nm_email"),
                  rs.getString("nm_especializacao"),
@@ -92,14 +92,13 @@ public class Medico {
       return m;
    }
    
-   public static void addMedico(String Scrm, String nome, String email, String espec,
+   public static void addMedico(String crm, String nome, String email, String espec,
                                 Date nasc, String tel, String endereco,
                                 String cidade, String estado)throws Exception{
         String SQL = "INSERT INTO medico VALUES("
                 + "default,?,?,?,?,?,?,?,?,?)";
         PreparedStatement s = Database.getConnection().prepareStatement(SQL);
-        int crm = Integer.parseInt(Scrm);
-        s.setInt(1, crm);
+        s.setString(1, crm);
         s.setString(2, nome);
         s.setString(3, email);
         s.setString(4, espec);
@@ -112,7 +111,7 @@ public class Medico {
         s.close();
     }
    
-    public Medico(int id, int crm, String nome, String email, String espec, Date nasc, String telefone, String endereco, String cidade, String estado) {
+    public Medico(int id, String crm, String nome, String email, String espec, Date nasc, String telefone, String endereco, String cidade, String estado) {
         this.id = id;
         this.crm = crm;
         this.nome = nome;
@@ -133,11 +132,11 @@ public class Medico {
         this.id = id;
     }
 
-    public int getCrm() {
+    public String getCrm() {
         return crm;
     }
 
-    public void setCrm(int crm) {
+    public void setCrm(String crm) {
         this.crm = crm;
     }
 
