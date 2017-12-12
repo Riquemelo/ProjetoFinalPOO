@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
 public class Paciente {
 
@@ -48,7 +46,7 @@ public class Paciente {
    }
 
    public static void addPaciente(int cpf, String nome, int rg, String email, String endereco, String cidade, String estado, String sexo, int telefone, Date nascimento) throws Exception {
-      String SQL = "INSERT INTO medico VALUES("
+      String SQL = "INSERT INTO paciente VALUES("
               + "default,?,?,?,?,?,?,?,?,?,?)";
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
       s.setInt(1, cpf);
