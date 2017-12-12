@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Paciente {
 
@@ -46,8 +48,7 @@ public class Paciente {
    }
 
    public static void addPaciente(int cpf, String nome, int rg, String email, String endereco, String cidade, String estado, String sexo, int telefone, Date nascimento) throws Exception {
-      String SQL = "INSERT INTO paciente VALUES("
-              + "default,?,?,?,?,?,?,?,?,?,?)";
+      String SQL = "INSERT INTO paciente VALUES(" + "default,?,?,?,?,?,?,?,?,?,?)";
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
       s.setInt(1, cpf);
       s.setString(2, nome);
@@ -61,6 +62,31 @@ public class Paciente {
       s.setDate(10, nascimento);
       s.execute();
       s.close();
+   }
+
+   public static ArrayList<Paciente> getPacienteList() throws Exception {
+      ArrayList<Paciente> list = new ArrayList<>();
+      Statement s = Database.getConnection().createStatement();
+      ResultSet rs = s.executeQuery("SELECT * FROM paciente");
+      while (rs.next()) {
+         Paciente pl = new Paciente(
+                 rs.getInt("cd_paciente"),
+                 rs.getInt("cd_cpf"),
+                 rs.getString("nm_name"),
+                 rs.getInt("cd_registro_geral"),
+                 rs.getString("nm_email"),
+                 rs.getString("nm_endereco"),
+                 rs.getString("nm_cidade"),
+                 rs.getString("nm_estado"),
+                 rs.getString("ic_sexo"),
+                 rs.getInt("cd_telefone"),
+                 rs.getDate("dt_nascimento")
+         );
+         list.add(pl);
+      }
+      rs.close();
+      s.close();
+      return list;
    }
 
    public Paciente(int id, int cpf, String nome, int rg, String email, String endereco, String cidade, String estado, String sexo, int telefone, Date nascimento) {
