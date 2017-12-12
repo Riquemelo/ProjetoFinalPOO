@@ -32,13 +32,14 @@ public class DatabaseCreatorListener implements ServletContextListener {
       try {
          s.execute("CREATE TABLE paciente(\n"
                  + "    cd_paciente INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
+                 + "    , cd_cpf VARCHAR(11) NOT NULL\n"
                  + "    , nm_name VARCHAR(100) NOT NULL\n"
+                 + "    , cd_registro_geral VARCHAR(13) NOT NULL\n"
                  + "    , nm_email VARCHAR(100) NOT NULL\n"
                  + "    , nm_endereco VARCHAR(100) NOT NULL\n"
                  + "    , nm_cidade VARCHAR(100) NOT NULL\n"
                  + "    , nm_estado VARCHAR(50) NOT NULL\n"
-                 + "    , cd_registro_geral VARCHAR(13) NOT NULL\n"
-                 + "    , cd_cpf VARCHAR(11) NOT NULL\n"
+                 + "    , ic_sexo VARCHAR(20) NOT NULL\n"
                  + "    , cd_telefone VARCHAR(10) NOT NULL\n"
                  + "    , dt_nascimento DATE NOT NULL"
                  + ")");
