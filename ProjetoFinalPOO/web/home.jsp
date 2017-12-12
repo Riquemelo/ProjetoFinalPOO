@@ -40,7 +40,7 @@
         <a href="cadastroMedico.jsp">Cadastrar Medico</a> |
         <a href="cadastroPaciente.jsp">Cadastrar Paciente</a> |
         <a href="cadastroConsulta.jsp">Cadastrar Consulta</a>
-        <br/>
+        <br/><br/>
         <a href="listaMedico.jsp">Médicos</a> |
         <a href="listaPaciente.jsp">Lista de Pacientes</a> |
         <a href="consultas.jsp">Calendário de Consultas</a>

@@ -33,11 +33,9 @@
       String admPass = request.getParameter("adminPass");
       try {
          User adm = User.getUser(admLogin, admPass);
-         Medico m = Medico.getMedico(registerCRM, registerNome);
-         if (adm == null) {
-            registerErrorMessage = "Login e/ou senha de administrador inválidos";
-         } else {
-             if(m == null){
+         Medico m = Medico.checkMedico(registerCRM);
+         if (adm != null || session.getAttribute("me.login") == "admin") {
+            if(m == null){
                 m.addMedico(registerCRM, registerNome, registerEmail,
                             registerEspec, registerDtNasc, registerTel,
                             registerEnd, registerCidade, registerEstado);
@@ -45,6 +43,8 @@
              }else{
                 registerErrorMessage = "Médico já existente";
              }
+         } else {
+             registerErrorMessage = "Login e/ou senha de administrador inválidos";
          }
       } catch (Exception ex) {
          registerErrorMessage = ex.getMessage();
@@ -87,11 +87,12 @@
                 <input type="text" name="cidadeMedico"><br/>
                 Estado:<br/>
                 <input type="text" name="estadoMedico"><br/><br/>
-
-                Login do Administrador:<br/>
-                <input type="text" name="adminLogin"><br/>
-                Senha do Administrador:<br/>
-                <input type="password" name="adminPass"><br/><br/>
+                <%if (session.getAttribute("me.login") == "admin"){%>
+                    Login do Administrador:<br/>
+                    <input type="text" name="adminLogin"><br/>
+                    Senha do Administrador:<br/>
+                    <input type="password" name="adminPass"><br/><br/>
+                <%}%>
                 
             <input type="submit" name="cadastroMedico" value="Cadastrar">
         </form>
