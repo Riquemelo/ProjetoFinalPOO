@@ -21,49 +21,39 @@
    }
 %>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Healthcare - Home</title>
-  </head>
-  <body>
-    <%@include file="WEB-INF/jspf/header.jspf" %>
-   
-    <div class="container-fluid">
-    
-        <h2 style='font-style:italic'>Login</h2> <br>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Healthcare - Home</title>
+    </head>
+    <body>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        <div class="container-fluid">
+            <%if (loginErrorMessage != null) {%>
+            <div style="color: red;"><%=loginErrorMessage%></div>
+            <%}%>
+            <%if (session.getAttribute("me.login") != null) {%>
+            <a href="cadastroMedico.jsp">Cadastrar Medico</a> |
+            <a href="cadastroPaciente.jsp">Cadastrar Paciente</a> |
+            <a href="cadastroConsulta.jsp">Cadastrar Consulta</a>
+            <br/><br/>
+            <a href="listaMedico.jsp">Médicos</a> |
+            <a href="listaPaciente.jsp">Lista de Pacientes</a> |
+            <a href="consultas.jsp">Calendário de Consultas</a>
+            <br/>
+            <%} else {%>
+            <form method="post">
+                <h2 style='font-style:italic'>Login</h2> <br>
+                <h6 style='font-style: italic'>Login:</h6>  
+                <input type="text" name="login"/><br/><br>
+                <h6 style='font-style: italic'>Senha:</h6>
+                <input type="password" name="pass"/><br/><br/><br>
+                <input type="submit" name="do-login" value="Entrar" button type="button" class="btn btn-outline-dark"/> <br><br>
+                <b> <a href="cadastroUser.jsp" style="font-style:italic; color: #00BFFF">Cadastre-se</a> </b>
+            </form>
+            <br/>
 
-    <%if (loginErrorMessage != null) {%>
-    <div style="color: red;"><%=loginErrorMessage%></div>
-    <%}%>
-    
-    <%if(session.getAttribute("me.login")!=null){%>
-        <a href="cadastroMedico.jsp">Cadastrar Medico</a> |
-        <a href="cadastroPaciente.jsp">Cadastrar Paciente</a> |
-        <a href="cadastroConsulta.jsp">Cadastrar Consulta</a>
-        <br/><br/>
-        <a href="listaMedico.jsp">Médicos</a> |
-        <a href="listaPaciente.jsp">Lista de Pacientes</a> |
-        <a href="consultas.jsp">Calendário de Consultas</a>
-        <br/>
-    <%}else{%>
-        <form method="post">
-        
-            <h6 style='font-style: italic'>Login:</h6>  
-        <input type="text" name="login"/><br/><br>
-            <h6 style='font-style: italic'>Senha:</h6>
-            <input type="password" name="pass"/><br/><br/><br>
-            <input type="submit" name="do-login" value="Entrar" button type="button" class="btn btn-outline-dark"/> <br><br>
-            
-    </form>
-    <br/>
-    <b> <a href="cadastroUser.jsp" style="font-style:italic; color: #00BFFF">Cadastre-se</a> </b>
-    <%}%>
-
-
-     
-    
-   
-</div>
-    <%@include file="WEB-INF/jspf/footer.jspf" %>
-  </body>
+            <%}%>
+        </div>
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
+    </body>
 </html>
