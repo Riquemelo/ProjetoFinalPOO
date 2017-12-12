@@ -14,14 +14,6 @@
   <body>
     <%@include file="WEB-INF/jspf/header.jspf" %>
 
-    <form method="post">
-      Login:
-      <input type="text" name="login"/><br/><br/>
-      Senha:
-      <input type="password" name="pass"/><br/><br/>
-      <input type="submit" name="Entrar" value="Entrar"/>
-    </form>
-
     <%@include file="WEB-INF/jspf/footer.jspf" %>
   </body>
 </html>

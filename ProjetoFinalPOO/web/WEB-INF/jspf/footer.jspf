@@ -1,6 +1,11 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 <div align="center">
-<br/><hr/>
+<br/>
+<br><br><br>
+
+<hr/>
 &copy;Equipe Healthcare - 2017
 </div>

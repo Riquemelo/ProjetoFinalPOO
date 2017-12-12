@@ -40,7 +40,9 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        <h1>Cadastro de Usuário</h1>
+        
+        <div class="container-fluid">
+        <h2 style='font-style:italic;'>Cadastro de Usuário</h2> <br>
         
         <%if (registerErrorMessage != null) {%>
         <div style="color: red;"><%=registerErrorMessage%></div>
@@ -50,23 +52,24 @@
         
         <form method="post">
             <div align="left">
-                Nome do Usuário:<br/>
-                <input type="text" name="nomeUsuario"><br/>
-                Login:<br/>
-                <input type="text" name="cadastroLogin"><br/>
-                Senha:<br/>
-                <input type="password" name="cadastroSenha"><br/><br/>
+                <h6 style='font-style: italic'> Nome do Usuário:</h6>
+                <input type="text" name="nomeUsuario"><br/><br>
+                <h6 style='font-style: italic'>Login:</h6>
+                <input type="text" name="cadastroLogin"><br/><br>
+                <h6 style='font-style: italic'>Senha:</h6>
+                <input type="password" name="cadastroSenha"><br/><br/><br>
             </div>
             <div align="left">
-                Login do Administrador:<br/>
-                <input type="text" name="adminLogin"><br/>
-                Senha do Administrador:<br/>
-                <input type="password" name="adminPass"><br/><br/> 
+                <h6 style='font-style: italic'>Login do Administrador:</h6>
+                <input type="text" name="adminLogin"><br/><br>
+                <h6 style='font-style: italic'>Senha do Administrador:</h6>
+                <input type="password" name="adminPass"><br/><br/> <br>
             </div>
-            <input type="submit" name="cadastro" value="Cadastrar">
+            <input type="submit" name="cadastro" value="Cadastrar" button type="button" class="btn btn-outline-dark">
         </form>
         <br/><br/>
-        <a href="home.jsp"> <- Voltar</a>
+        <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
+        </div>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>
