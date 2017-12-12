@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class Medico {
@@ -19,12 +21,58 @@ public class Medico {
    private String cidade;
    private String estado;
    
-   public static Medico getMedico(String Scrm, String nome) throws SQLException {
-      String SQL = "SELECT * FROM medico WHERE cd_crm_medico=? AND nm_medico=?";
+   public static Medico getMedico(int id) throws Exception{
+        Medico m = null;
+        String SQL = "SELECT * FROM medico"
+                + " WHERE cd_medico=?";
+        PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+        s.setInt(1, id);
+        ResultSet rs = s.executeQuery();
+        if(rs.next()){
+            m = new Medico(rs.getInt("cd_medico"),
+                 rs.getInt("cd_crm_medico"),
+                 rs.getString("nm_medico"),
+                 rs.getString("nm_email"),
+                 rs.getString("nm_especializacao"),
+                 rs.getDate("dt_nascimento"),
+                 rs.getString("cd_telefone"),
+                 rs.getString("nm_endereco"),
+                 rs.getString("nm_cidade"),
+                 rs.getString("nm_estado"));
+        }
+        rs.close();
+        s.close();
+        return m;
+    }
+   
+   public static ArrayList<Medico> getMedicoList() throws Exception{
+        ArrayList<Medico> list = new ArrayList<>();
+        Statement s = Database.getConnection().createStatement();
+        ResultSet rs = s.executeQuery("SELECT * FROM medico");
+        while(rs.next()){
+            Medico m = new Medico(rs.getInt("cd_medico"),
+                 rs.getInt("cd_crm_medico"),
+                 rs.getString("nm_medico"),
+                 rs.getString("nm_email"),
+                 rs.getString("nm_especializacao"),
+                 rs.getDate("dt_nascimento"),
+                 rs.getString("cd_telefone"),
+                 rs.getString("nm_endereco"),
+                 rs.getString("nm_cidade"),
+                 rs.getString("nm_estado")
+            );
+            list.add(m);
+        }
+        rs.close();
+        s.close();
+        return list;
+    }
+   
+   public static Medico checkMedico(String Scrm) throws SQLException {
+      String SQL = "SELECT * FROM medico WHERE cd_crm_medico=?";
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
       int crm = Integer.parseInt(Scrm);
       s.setInt(1, crm);
-      s.setString(2, nome);
       ResultSet rs = s.executeQuery();
       Medico m = null;
       if (rs.next()) {
