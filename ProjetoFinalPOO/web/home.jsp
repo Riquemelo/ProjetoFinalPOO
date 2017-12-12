@@ -27,8 +27,10 @@
   </head>
   <body>
     <%@include file="WEB-INF/jspf/header.jspf" %>
-
-    <h1>Login</h1>
+   
+    <div class="container-fluid">
+    
+        <h2 style='font-style:italic'>Login</h2> <br>
 
     <%if (loginErrorMessage != null) {%>
     <div style="color: red;"><%=loginErrorMessage%></div>
@@ -45,16 +47,23 @@
         <br/>
     <%}else{%>
         <form method="post">
-          Login:<br/>
-          <input type="text" name="login"/><br/>
-          Senha:<br/>
-          <input type="password" name="pass"/><br/><br/>
-          <input type="submit" name="do-login" value="Entrar"/>
-        </form>
-        <br/>
-        <a href="cadastroUser.jsp">Cadastre-se</a>
+        
+            <h6 style='font-style: italic'>Login:</h6>  
+        <input type="text" name="login"/><br/><br>
+            <h6 style='font-style: italic'>Senha:</h6>
+            <input type="password" name="pass"/><br/><br/><br>
+            <input type="submit" name="do-login" value="Entrar" button type="button" class="btn btn-outline-dark"/> <br><br>
+            
+    </form>
+    <br/>
+    <b> <a href="cadastroUser.jsp" style="font-style:italic; color: #00BFFF">Cadastre-se</a> </b>
     <%}%>
 
+
+     
+    
+   
+</div>
     <%@include file="WEB-INF/jspf/footer.jspf" %>
   </body>
 </html>

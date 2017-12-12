@@ -95,6 +95,9 @@
                 
             <input type="submit" name="cadastroMedico" value="Cadastrar">
         </form>
+        <br/><br/>
+        <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
+        
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

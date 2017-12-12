@@ -7,9 +7,31 @@
 <%@page import="br.com.fatecpg.project.User"%>
 
 <%@ page pageEncoding="UTF-8" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 <div align="center">
-    <h1>Healthcare</h1>
-    <hr/><br/>
+    
+    <nav style='background-color: black'>
+  <ul  class="nav justify-content-end">
+    <li class="nav-item active">
+        <a class="nav-link" href="#" style="color: #00BFFF">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color: #00BFFF">Link1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" style="color: #00BFFF">Link2</a>
+    </li>
+    </ul>
+</nav>
+    
+    
+   
+   
+    <h1 style='font-style:italic; color: #00BFFF ; background-color: black' ><br>Healthcare <br><br></h1>
+    
+    
+    <br/>
     <%
     if(request.getParameter("do-logoff")!= null){
         session.removeAttribute("me.id");
