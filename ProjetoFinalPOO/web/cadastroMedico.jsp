@@ -65,8 +65,8 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        
-        <h1>Cadastrar Médico</h1>
+         <div class="container-fluid">
+        <h2 style='font-style:italic'>Cadastrar Médico</h2>
         
         <%if (registerErrorMessage != null) {%>
         <div style="color: red;"><%=registerErrorMessage%></div>
@@ -75,46 +75,45 @@
         <%}%>
         
         <form method="post">
-                CRM:<br/>
-                <input required type="text" name="crm" maxlength="10">
-                UF:
-                <select name="uf" >
+            <h6 style='font-style:italic'> CRM: </h6>
+            <input required type="text" name="crm" maxlength="10"><br><br>
+            <h6 style='font-style:italic'> UF:</h6>
+            <select name="uf" >
                     <%for (int c = 0; c <= 27; c++){%>
                        <option value="<%=estado[c]%>"><%=estado[c]%></option>
                     <%}%>
                 </select><br/>
-                Nome:<br/>
-                <input required type="text" name="nomeMedico"/><br/>
-                Email:<br/>
-                <input required type="email" name="emailMedico"/><br/>
-                Especialização:<br/>
-                <input required type="text" name="especializacao"/><br/>
-                Data de Nascimento:<br/>
-                <input required type="text" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" name="dataNascimento"/>
-                <i>Utilize o formato dd/mm/aaaa</i><br/>
-                Telefone:<br/>
-                <input required type="text" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" name="telefoneMedico"/>
-                <i>Utilize o formato (00)0000-0000</i><br/>
-                Endereço:<br/>
-                <input required type="text" name="enderecoMedico"/><br/>
-                Cidade:<br/>
-                <input required type="text" name="cidadeMedico"/>
-                Estado:
+                <br>
+                <h6 style='font-style:italic'> Nome: </h6>
+                <input required type="text" name="nomeMedico"/><br/><br>
+                <h6 style='font-style:italic'> Email:</h6>
+                <input required type="email" name="emailMedico"/><br/> <br>
+                <h6 style='font-style:italic'>Especialização:</h6>
+                <input required type="text" name="especializacao"/><br/><br>
+                <h6 style='font-style:italic'> Data de Nascimento:</h6>
+                <input required type="text" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" name="dataNascimento" placeholder="dd/mm/aaaa"/><br><br>
+                <h6 style='font-style:italic'>Telefone: </h6>
+                <input required type="text" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" name="telefoneMedico" placeholder="(00)0000-0000"/> <br><br>
+                <h6 style='font-style:italic'> Endereço:</h6>
+                <input required type="text" name="enderecoMedico"/><br/><br>
+                <h6 style='font-style:italic'>Cidade:</h6>
+                <input required type="text" name="cidadeMedico"/><br><br>
+                <h6 style='font-style:italic'> Estado:</h6>
                 <select name="estadoMedico" >
                     <%for (int c = 0; c <= 27; c++){%>
                        <option value="<%=estado[c]%>"><%=estado[c]%></option>
                     <%}%>
                 </select><br/><br/>
-                    Login do Administrador:<br/>
-                    <input type="text" name="adminLogin"><br/>
-                    Senha do Administrador:<br/>
+                <h6 style='font-style:italic'>Login do Administrador:</h6>
+                <input type="text" name="adminLogin"><br/><br>
+                <h6 style='font-style:italic'>Senha do Administrador:</h6>
                     <input type="password" name="adminPass"><br/><br/>
                 
-            <input type="submit" name="cadastroMedico" value="Cadastrar"/>
+            <input type="submit" name="cadastroMedico" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
         </form>
         <br/><br/>
         <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
-        
+         </div>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>
