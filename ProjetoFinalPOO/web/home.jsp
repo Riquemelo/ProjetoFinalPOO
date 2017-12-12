@@ -14,8 +14,7 @@
             session.setAttribute("me.nome", u.getNome());
             session.setAttribute("me.login", u.getLogin());
             session.setAttribute("me.passwordHash", u.getPasswordHash());
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
-         }
+         }                  
       } catch (Exception ex) {
          loginErrorMessage = ex.getMessage();
       }
@@ -34,16 +33,27 @@
     <%if (loginErrorMessage != null) {%>
     <div style="color: red;"><%=loginErrorMessage%></div>
     <%}%>
-
-    <form method="post">
-      Login:<br/>
-      <input type="text" name="login"/><br/>
-      Senha:<br/>
-      <input type="password" name="pass"/><br/><br/>
-      <input type="submit" name="do-login" value="Entrar"/>
-    </form>
-    <br/>
-    <a href="cadastroUser.jsp">Cadastre-se</a>
+    
+    <%if(session.getAttribute("me.login")!=null){%>
+        <a href="cadastroMedico.jsp">Cadastrar Medico</a> |
+        <a href="cadastroPaciente.jsp">Cadastrar Paciente</a> |
+        <a href="cadastroConsulta.jsp">Cadastrar Consulta</a>
+        <br/>
+        <a href="listaMedico.jsp">Médicos</a> |
+        <a href="listaPaciente.jsp">Lista de Pacientes</a> |
+        <a href="consultas.jsp">Calendário de Consultas</a>
+        <br/>
+    <%}else{%>
+        <form method="post">
+          Login:<br/>
+          <input type="text" name="login"/><br/>
+          Senha:<br/>
+          <input type="password" name="pass"/><br/><br/>
+          <input type="submit" name="do-login" value="Entrar"/>
+        </form>
+        <br/>
+        <a href="cadastroUser.jsp">Cadastre-se</a>
+    <%}%>
 
     <%@include file="WEB-INF/jspf/footer.jspf" %>
   </body>

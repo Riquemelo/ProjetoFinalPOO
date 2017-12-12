@@ -49,20 +49,18 @@
         <%}%>
         
         <form method="post">
-            <div align="left">
                 Nome do Usuário:<br/>
                 <input type="text" name="nomeUsuario"><br/>
                 Login:<br/>
                 <input type="text" name="cadastroLogin"><br/>
                 Senha:<br/>
                 <input type="password" name="cadastroSenha"><br/><br/>
-            </div>
-            <div align="left">
+                
                 Login do Administrador:<br/>
                 <input type="text" name="adminLogin"><br/>
                 Senha do Administrador:<br/>
                 <input type="password" name="adminPass"><br/><br/> 
-            </div>
+                
             <input type="submit" name="cadastro" value="Cadastrar">
         </form>
         <br/><br/>

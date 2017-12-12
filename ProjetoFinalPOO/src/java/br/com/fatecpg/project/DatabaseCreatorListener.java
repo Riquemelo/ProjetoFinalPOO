@@ -24,7 +24,7 @@ public class DatabaseCreatorListener implements ServletContextListener {
                  + ")");
          System.out.println("Criada tabela medico.");
       } catch (Exception ex2) {
-         System.out.println("Erro ao criar a hour_price: " + ex2.getMessage());
+         System.out.println("Erro ao criar a medico: " + ex2.getMessage());
       }
    }
 
