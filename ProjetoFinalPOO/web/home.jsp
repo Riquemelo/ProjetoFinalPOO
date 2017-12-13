@@ -41,8 +41,8 @@
             <button button type="button" class="btn btn-outline-dark"><a href="listaMedico.jsp">Médicos</a></button> 
             <button button type="button" class="btn btn-outline-dark"><a href="listaPaciente.jsp">Lista de Pacientes</a></button> 
             <button button type="button" class="btn btn-outline-dark"><a href="consultas.jsp">Calendário de Consultas</a></button>
-            <br/><br><br><br>
-            <%} else {%>
+            <br/><br><br><br> 
+             <%} else {%>
             <form method="post">
                 <h2 style='font-style:italic'>Login</h2> <br>
                 <h6 style='font-style: italic'>Login:</h6>  
