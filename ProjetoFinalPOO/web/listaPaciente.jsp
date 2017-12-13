@@ -14,10 +14,13 @@
   <body>
 
     <%@include file="WEB-INF/jspf/header.jspf" %>
+    <div class="container-fluid">
+             <center>
+                 <br><br><br>
 
-    <h1>Pacientes Cadastrados</h1>
+                 <h2 style='font-style:italic'>Pacientes Cadastrados</h2><br><br>
 
-    <table border="1">
+    <table border="1" class="table table-hover">
       <tr>
         <th>ID</th>
         <th>CPF</th>
@@ -60,8 +63,11 @@
       <%} catch (Exception e) {%>
       <div style="color: red;"><%=e.getMessage()%></div>
       <%}%>
-    </table>
-
+    </table><br><br>
+    
+    <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b><br>
+             </center>
+    </div><br>
     <%@include file="WEB-INF/jspf/footer.jspf" %>
 
   </body>

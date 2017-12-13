@@ -12,7 +12,10 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-                <h1>Médicos</h1>
+        <div class="container-fluid">
+             <center>
+                 <br><br><br>
+                 <h2 style='font-style:italic'>Médicos</h2><br><br>
         <table border="1" class="table table-hover">
             <tr>
                 <th>CRM</th>
@@ -46,8 +49,10 @@
                 <div style="color: red;"><%=e.getMessage()%></div>
             <%}%>
         </table>
-        <br/>
-        <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b>
+        <br/><br>
+        <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b><br>
+             </center>
+        </div><br>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

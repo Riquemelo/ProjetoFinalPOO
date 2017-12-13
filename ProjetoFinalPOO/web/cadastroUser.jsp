@@ -42,6 +42,7 @@
         <%@include file="WEB-INF/jspf/header.jspf" %>
         
         <div class="container-fluid">
+            <center>
         <h2 style='font-style:italic;'>Cadastro de Usuário</h2> <br>
         
         <%if (registerErrorMessage != null) {%>
@@ -69,6 +70,7 @@
         </form>
         <br/><br/>
         <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
+            </center>
         </div>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>
