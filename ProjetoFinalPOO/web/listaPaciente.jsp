@@ -1,6 +1,5 @@
 <%@page import="java.sql.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -15,10 +14,8 @@
       Paciente.DeletePaciente(id);
       mensagemExcluir = "Registro excluido com sucesso";
    }
-   if (request.getParameter("atualizar_paciente") != null) {
-
-      SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
+   if (request.getParameter("atualizar_paciente") != null){
+       
       String cpf = request.getParameter("cpf");
       String nome = request.getParameter("nome");
       String rg = request.getParameter("rg");
@@ -32,15 +29,15 @@
       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
       Date nascimento = new Date(formatter.parse(request.getParameter("nascimento")).getTime());
 
-      String id = request.getParameter("id");
+      String idS = request.getParameter("id");
       try {
-
-         Paciente p = Paciente.getPaciente(cpf);
-         p.updatePaciente(cpf, nome, rg,
-                 email, endereco, cidade,
-                 estado, sexo, telefone, nascimento, id);
-         response.sendRedirect(request.getContextPath() + "/listaPaciente.jsp");
-
+       
+            Paciente p = Paciente.getPaciente(cpf);
+            p.updatePaciente(cpf, nome, rg,
+                            email, endereco, cidade,
+                            estado, sexo, telefone, nascimento, idS);
+            response.sendRedirect(request.getContextPath() + "/listaPaciente.jsp");
+      
       } catch (Exception ex) {
          updateErrorMessage = ex.getMessage();
       }
@@ -59,24 +56,16 @@
   <body>
 
     <%@include file="WEB-INF/jspf/header.jspf" %>
+    
+    <div class="container-fluid">
     <div align="left">
       <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b>
     </div>
-    <div class="container-fluid">
-      <center>
-        <br><br><br>
-        <%if (request.getParameter("alterar-paciente") != null) {
-              String id = request.getParameter("id");
-              Paciente pt = Paciente.getPacienteId(id);%>
-
         <%if (updateErrorMessage != null) {%>
         <div style="color: red;"><%=updateErrorMessage%></div>
         <%}%>
 
         <h2 style='font-style:italic'>Editar Paciente</h2><br>
-        <form>
-          <input type="hidden" name="alterar-paciente" value="Alterar">
-          <h6 style='font-style:italic'>CPF: </h6> <input  type="text" maxlength="11" pattern="[0-9]+$" name="cpf" value="<%=pt.getCpf()%>" required/><br><br>
           <h6 style='font-style:italic'>Nome:</h6> <input  type="text" value="<%=pt.getNome()%>" maxlength="100" name="nome" required/><br><br>
           <h6 style='font-style:italic'> Rg: </h6><input value="<%=pt.getRg()%>" type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
           <h6 style='font-style:italic'>Email:</h6> <input value="<%=pt.getEmail()%>" type="email" maxlength="100" name="email" required/><br><br>
@@ -93,13 +82,14 @@
             <%}%>
           </select><br><br>
           <h6 style='font-style:italic'>Telefone: </h6><input value="<%=pt.getTelefone()%>" type="text" maxlength="15" name="telefone" placeholder="(00)0000-0000" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" required/><br><br>
-          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" required/><br><br>
+          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" required/><br><br>
 
-          <input type="submit" name="atualizar-paciente" value="Update" button type="button" class="btn btn-outline-dark"/>
-        </form>
-        <br/><br/>
-        <%}%>
-        <h2 style='font-style:italic'>Pacientes Cadastrados</h2><br><br>
+    <center>
+    <br><br><br>
+    <%if(request.getParameter("alterar-paciente") != null){
+        String id = request.getParameter("id");
+        Paciente pt = Paciente.getPacienteId(id);%>
+        
 
         <%if (mensagemExcluir != null) {%>
         <div style="color: blue;"><%=mensagemExcluir%></div>
