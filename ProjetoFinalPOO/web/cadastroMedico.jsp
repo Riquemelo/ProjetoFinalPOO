@@ -66,6 +66,9 @@
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
          <div class="container-fluid">
+         <div align="left">
+            <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b>
+         </div>
              <center>
                  <br><br><br>
                  <h2 style='font-style:italic'>Cadastrar Médico</h2><br>
@@ -78,8 +81,8 @@
         
         <form method="post">
             <h6 style='font-style:italic'> CRM: </h6>
-            <input required type="text" name="crm" maxlength="10"><br><br>
-            <h6 style='font-style:italic'> UF:</h6>
+            <input required type="text" name="crm" maxlength="10">
+            <i>UF:</i>
             <select name="uf" >
                     <%for (int c = 0; c <= 27; c++){%>
                        <option value="<%=estado[c]%>"><%=estado[c]%></option>
@@ -113,8 +116,7 @@
                 
             <input type="submit" name="cadastroMedico" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
         </form>
-        <br/><br/>
-        <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
+        <br/>
          </center>
          </div>
         <%@include file="WEB-INF/jspf/footer.jspf" %>

@@ -2,8 +2,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+   String mensagemExcluir = null;
    if (session.getAttribute("me.login") == null) {
       response.sendRedirect(request.getContextPath() + "/home.jsp");
+   }
+   if (request.getParameter("alterar-paciente") != null){
+       
+   }else if(request.getParameter("deletar-paciente") != null){
+       String id = request.getParameter("id");
+       Paciente.DeletePaciente(id);
+       mensagemExcluir = "Registro excluido com sucesso";
    }
 %>
 <html>
@@ -14,42 +22,39 @@
   <body>
 
     <%@include file="WEB-INF/jspf/header.jspf" %>
+    <div align="left">
+        <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b>
+    </div>
     <div class="container-fluid">
-             <center>
-                 <br><br><br>
+    <center>
+    <br><br><br>
 
-                 <h2 style='font-style:italic'>Pacientes Cadastrados</h2><br><br>
+    <h2 style='font-style:italic'>Pacientes Cadastrados</h2><br><br>
+    
+    <%if (mensagemExcluir != null) {%>
+      <div style="color: blue;"><%=mensagemExcluir%></div>
+    <%}%>
 
     <table border="1" class="table table-hover">
       <tr>
-        <th>ID</th>
         <th>CPF</th>
         <th>Nome</th>
         <th>RG</th>
-        <th>Email</th>
-        <th>Endereco</th>
-        <th>Cidade</th>
-        <th>Estado</th>
         <th>Sexo</th>
-        <th>Telefone</th>
         <th>Data de Nascimento</th>
+        <th>Alterar / Excluir</th>
       </tr>
       <%try {%>
       <%for (Paciente pl : Paciente.getPacienteList()) {%>
-      <tr>
-        <td><%= pl.getId()%></td>
+      <tr data-toggle="collapse" data-target="#accordion<%=pl.getId()%>" class="clickable">
         <td><%= pl.getCpf()%></td>
         <td><%= pl.getNome()%></td>
         <td><%= pl.getRg()%></td>
-        <td><%= pl.getEmail()%></td>
-        <td><%= pl.getEndereco()%></td>
-        <td><%= pl.getCidade()%></td>
-        <td><%= pl.getEstado()%></td>
         <td><%= pl.getSexo()%></td>
-        <td><%= pl.getTelefone()%></td>
         <td><%= pl.getNascimento()%></td>
+        
         <td>
-          <form action="listaPaciente.jsp">
+          <form>
             <input type="hidden" name="id"
                    value="<%= pl.getId()%>"/>
             <input type="submit" name="alterar-paciente"
@@ -59,13 +64,24 @@
           </form>
         </td>
       </tr>
+      
+        <tr>
+            <td style="padding-top: 0px; padding-bottom: 0px;" colspan="6">
+                <div style="padding-top: 5px; padding-bottom: 5px;" 
+                    id="accordion<%=pl.getId()%>" class="collapse">
+                        
+                <b>Contato:</b> <%= pl.getTelefone()%> <b>Email:</b> <%= pl.getEmail()%> <br/>
+                <b>Endereço:</b> <%= pl.getEndereco()%> - <%= pl.getCidade()%> , <%=pl.getEstado()%>
+                        
+                </div>
+            </td>
+        </tr>
       <%}%>
       <%} catch (Exception e) {%>
       <div style="color: red;"><%=e.getMessage()%></div>
       <%}%>
-    </table><br><br>
+    </table><br>
     
-    <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b><br>
              </center>
     </div><br>
     <%@include file="WEB-INF/jspf/footer.jspf" %>

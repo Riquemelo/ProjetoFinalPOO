@@ -20,7 +20,8 @@ public class Paciente {
    private String sexo;
    private String telefone;
    private Date nascimento;
-
+   
+   
    public static Paciente getPaciente(String cpfA) throws SQLException {
       String SQL = "SELECT * FROM paciente WHERE cd_cpf=?";
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
@@ -87,6 +88,14 @@ public class Paciente {
       rs.close();
       s.close();
       return list;
+   }
+   public static void DeletePaciente(String idS) throws SQLException {
+      String SQL = "DELETE FROM paciente WHERE cd_paciente=?";
+      PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+      int id = Integer.parseInt(idS);
+      s.setInt(1, id);
+      s.execute();
+      s.close();
    }
 
    public Paciente(int id, String cpf, String nome, String rg, String email, String endereco, String cidade, String estado, String sexo, String telefone, Date nascimento) {

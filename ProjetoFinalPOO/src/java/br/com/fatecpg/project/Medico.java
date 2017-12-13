@@ -111,6 +111,15 @@ public class Medico {
         s.close();
     }
    
+    public static void DeleteMedico(String idS) throws SQLException {
+      String SQL = "DELETE FROM medico WHERE cd_medico=?";
+      PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+      int id = Integer.parseInt(idS);
+      s.setInt(1, id);
+      s.execute();
+      s.close();
+    }
+   
     public Medico(int id, String crm, String nome, String email, String espec, Date nasc, String telefone, String endereco, String cidade, String estado) {
         this.id = id;
         this.crm = crm;

@@ -47,8 +47,9 @@
     %>
     <%if(session.getAttribute("me.login")!=null){%>
     <form>
-        <h6 style='font-style:italic'> Bem Vindo, <%=session.getAttribute("me.nome")%>! </h6>
-        <input type="submit" name="do-logoff" value="Sair" button type="button" class="btn btn-outline-dark"/>
+        <h6 style='font-style:italic'> Bem Vindo, <%=session.getAttribute("me.nome")%>! 
+        <input type="submit" name="do-logoff" value="Sair" button type="button" class="btn btn-outline-dark"/></h6>
+        
     <%}%>
     <%if(Database.getConnectionException()!=null){%>
     <div style="color: red;">
@@ -56,4 +57,6 @@
         <%=Database.getConnectionException().getMessage()%>
     </div>
     <%}%>
+    
+
 </div>

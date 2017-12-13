@@ -42,6 +42,9 @@
         <%@include file="WEB-INF/jspf/header.jspf" %>
         
         <div class="container-fluid">
+        <div align="left">
+            <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b>
+        </div>
             <center>
         <h2 style='font-style:italic;'>Cadastro de Usuário</h2> <br>
         
@@ -52,24 +55,21 @@
         <%}%>
         
         <form method="post">
-            <div align="left">
+            
                 <h6 style='font-style: italic'> Nome do Usuário:</h6>
                 <input type="text" name="nomeUsuario"><br/><br>
                 <h6 style='font-style: italic'>Login:</h6>
                 <input type="text" name="cadastroLogin"><br/><br>
                 <h6 style='font-style: italic'>Senha:</h6>
-                <input type="password" name="cadastroSenha"><br/><br/><br>
-            </div>
-            <div align="left">
+                <input type="password" name="cadastroSenha"><br/><br/><br>                  
                 <h6 style='font-style: italic'>Login do Administrador:</h6>
                 <input type="text" name="adminLogin"><br/><br>
                 <h6 style='font-style: italic'>Senha do Administrador:</h6>
                 <input type="password" name="adminPass"><br/><br/> <br>
-            </div>
+            
             <input type="submit" name="cadastro" value="Cadastrar" button type="button" class="btn btn-outline-dark">
         </form>
-        <br/><br/>
-        <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
+        <br/>   
             </center>
         </div>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
