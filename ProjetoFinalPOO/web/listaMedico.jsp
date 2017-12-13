@@ -12,7 +12,7 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        <h1>Médicos</h1>
+                <h1>Médicos</h1>
         <table border="1" class="table table-hover">
             <tr>
                 <th>CRM</th>

@@ -28,6 +28,7 @@
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
         <div class="container-fluid">
+            <center>
             <%if (loginErrorMessage != null) {%>
             <div style="color: red;"><%=loginErrorMessage%></div>
             <%}%>
@@ -54,6 +55,7 @@
             <br/>
 
             <%}%>
+            </center>
         </div>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>

@@ -66,7 +66,9 @@
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
          <div class="container-fluid">
-        <h2 style='font-style:italic'>Cadastrar Médico</h2>
+             <center>
+                 <br><br><br>
+                 <h2 style='font-style:italic'>Cadastrar Médico</h2><br>
         
         <%if (registerErrorMessage != null) {%>
         <div style="color: red;"><%=registerErrorMessage%></div>
@@ -113,6 +115,7 @@
         </form>
         <br/><br/>
         <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
+         </center>
          </div>
         <%@include file="WEB-INF/jspf/footer.jspf" %>
     </body>

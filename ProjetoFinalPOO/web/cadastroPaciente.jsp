@@ -43,27 +43,33 @@
     <title>Healthcare - Cadastro de Pacientes</title>
   </head>
   <body>
+       <%@include file="WEB-INF/jspf/header.jspf" %>
+        <div class="container-fluid">
   <center>
-    <h1>Cadastrar de Paciente</h1>
+      <br><br>
+      <h2 style='font-style:italic'>Cadastrar de Paciente</h2><br>
   </center>
 
   <%if (cadastroErrorMessage != null) {%>
   <div style="color: red;"><%=cadastroErrorMessage%></div>
   <%}%>
+  <center>
   <form action="listaPaciente.jsp">
-    CPF: <input type="text" maxlength="11" pattern="[0-9]+$" name="cpf" max required/>
-    Nome: <input type="text" maxlength="100" name="nome" required/>
-    Rg: <input type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/>
-    Email: <input type="email" maxlength="100" name="email" required/>
-    Endereco: <input type="text" maxlength="100" name="endereco" required/>
-    Cidade: <input type="text" maxlength="100" name="cidade" required/>
-    Estado: <input type="text" maxlength="100" name="estado" required/>
-    Sexo: <input type="text" maxlength="30" name="sexo" required/>
-    Telefone: <input type="text" maxlength="15" name="telefone" required/>
-    Data de Nascimento: <input type="text" maxlength="15" name="nascimento" required/>
+      <h6 style='font-style:italic'>CPF: </h6> <input type="text" maxlength="11" pattern="[0-9]+$" name="cpf" max required/><br><br>
+      <h6 style='font-style:italic'>Nome:</h6> <input type="text" maxlength="100" name="nome" required/><br><br>
+    <h6 style='font-style:italic'> Rg: </h6><input type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
+     <h6 style='font-style:italic'>Email:</h6> <input type="email" maxlength="100" name="email" required/><br><br>
+     <h6 style='font-style:italic'>Endereco:</h6> <input type="text" maxlength="100" name="endereco" required/><br><br>
+    <h6 style='font-style:italic'> Cidade:</h6> <input type="text" maxlength="100" name="cidade" required/><br><br>
+     <h6 style='font-style:italic'>Estado: </h6><input type="text" maxlength="100" name="estado" required/><br><br>
+     <h6 style='font-style:italic'>Sexo: </h6><input type="text" maxlength="30" name="sexo" required/><br><br>
+     <h6 style='font-style:italic'>Telefone: </h6><input type="text" maxlength="15" name="telefone" required/><br><br>
+     <h6 style='font-style:italic'>Data de Nascimento:</h6> <input type="text" maxlength="15" name="nascimento" required/><br><br>
 
-    <input type="submit" name="cadastrar-paciente" value="Cadastrar"/>
+    <input type="submit" name="cadastrar-paciente" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
   </form>
-
+  </center>
+        </div>
+     <%@include file="WEB-INF/jspf/footer.jspf" %>
 </body>
 </html>
