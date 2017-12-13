@@ -1,6 +1,6 @@
 <%@page import="java.sql.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="br.com.fatecpg.project.Paciente"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%

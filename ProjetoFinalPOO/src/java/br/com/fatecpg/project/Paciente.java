@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Paciente {
 
@@ -76,13 +80,19 @@ public class Paciente {
 
    public static void updatePaciente(String cpf, String nome, String rg, String email,
            String endereco, String cidade, String estado,
-           String sexo, String telefone, Date nasc, String idS) throws Exception {
+           String sexo, String telefone, String nascimento, String idS) throws SQLException {
       String SQL = "UPDATE paciente"
-              + " SET cd_cpf=?, nm_name=?, nm_registro_geral=?,"
+              + " SET cd_cpf=?, nm_name=?, cd_registro_geral=?,"
               + " nm_email=?, nm_endereco=?, nm_cidade=?, nm_estado=?,"
-              + " ic_sexo=?, cd_telefone=?"
+              + " ic_sexo=?, cd_telefone=?, dt_nascimento=?"
               + " WHERE cd_paciente=?";
-
+      SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+      Date nasc = null;
+      try {
+         nasc = new Date(format.parse(nascimento).getTime());
+      } catch (ParseException ex) {
+         ex.getMessage();
+      }
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
       int id = Integer.parseInt(idS);
       s.setString(1, cpf);

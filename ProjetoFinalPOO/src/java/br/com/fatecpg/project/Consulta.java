@@ -96,7 +96,7 @@ public class Consulta {
            String motivo, double valor, String idS) throws Exception {
       String SQL = "UPDATE consulta"
               + " SET cd_medico=?, cd_paciente=?, hr_consulta=?,"
-              + " dt_consulta=?, ds_motivo=?, vl_consulta"
+              + " dt_consulta=?, ds_motivo=?, vl_consulta=?"
               + " WHERE cd_consulta=?";
 
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);

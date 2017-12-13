@@ -83,7 +83,8 @@
           <h6 style='font-style:italic'> Motivo:</h6>
           <input required type="text" name="motivo" value="<%=cd.getMotivo()%>"/><br/><br>
           <h6 style='font-style:italic'>Valor:</h6>
-          <input required class="numero" type="text" name="valor" value="<%=cd.getValor()%>"/><br><br>
+          <input required class="numero" type="number" name="valor" value="<%=cd.getValor()%>"/><br><br>
+          <input type="hidden" name="id" value="<%=id%>"/>
 
           <input type="submit" name="atualizar-consulta" value="Update" button type="button" class="btn btn-outline-dark"/>
           <br><br><br>
