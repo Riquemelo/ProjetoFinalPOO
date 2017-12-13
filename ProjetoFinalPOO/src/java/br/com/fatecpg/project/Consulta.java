@@ -4,19 +4,21 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Consulta {
 
    private int id;
-   private int idMedico;
-   private int idPaciente;
-   private Date hora;
+   private String idMedico;
+   private String idPaciente;
+   private String hora;
    private Date data;
    private String motivo;
    private double valor;
 
    public static Consulta getConsulta(String idA) throws SQLException {
-      String SQL = "SELECT * FROM consulta WHERE cd_consulta=? ORDER BY dt_consulta DESC";
+      String SQL = "SELECT * FROM consulta WHERE cd_consulta=?";
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
       int id = Integer.parseInt(idA);
       s.setInt(1, id);
@@ -24,26 +26,65 @@ public class Consulta {
       Consulta c = null;
       if (rs.next()) {
          c = new Consulta(rs.getInt("cd_consulta"),
-                 rs.getInt("cd_medico"),
-                 rs.getInt("cd_paciente"),
-                 rs.getDate("hr_consulta"),
+                 rs.getString("cd_medico"),
+                 rs.getString("cd_paciente"),
+                 rs.getString("hr_consulta"),
                  rs.getDate("dt_consulta"),
                  rs.getString("ds_motivo"),
                  rs.getDouble("vl_consulta"));
-
       }
       rs.close();
       s.close();
       return c;
    }
 
-   public static void addConsulta(int idMedico, int idPaciente, Date hora, Date data, String motivo, double valor) throws Exception {
+   public static Consulta checkConsulta(String cpf, String hora) throws SQLException {
+      String SQL = "SELECT * FROM consulta WHERE cd_paciente=? AND hr_consulta=?";
+      PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+
+      s.setString(1, hora);
+      ResultSet rs = s.executeQuery();
+      Consulta c = null;
+      if (rs.next()) {
+         c = new Consulta(rs.getInt("cd_consulta"),
+                 rs.getString("cd_medico"),
+                 rs.getString("cd_paciente"),
+                 rs.getString("hr_consulta"),
+                 rs.getDate("dt_consulta"),
+                 rs.getString("ds_motivo"),
+                 rs.getDouble("vl_consulta"));
+      }
+      rs.close();
+      s.close();
+      return c;
+   }
+
+   public static ArrayList<Consulta> getConsultaList() throws Exception {
+      ArrayList<Consulta> list = new ArrayList<>();
+      Statement s = Database.getConnection().createStatement();
+      ResultSet rs = s.executeQuery("SELECT * FROM consulta ");
+      while (rs.next()) {
+         Consulta c = new Consulta(rs.getInt("cd_consulta"),
+                 rs.getString("cd_medico"),
+                 rs.getString("cd_paciente"),
+                 rs.getString("hr_consulta"),
+                 rs.getDate("dt_consulta"),
+                 rs.getString("ds_motivo"),
+                 rs.getDouble("vl_consulta"));
+         list.add(c);
+      }
+      rs.close();
+      s.close();
+      return list;
+   }
+
+   public static void addConsulta(String idMedico, String idPaciente, String hora, Date data, String motivo, double valor) throws Exception {
       String SQL = "INSERT INTO consulta VALUES("
               + "default,?,?,?,?,?,?)";
       PreparedStatement s = Database.getConnection().prepareStatement(SQL);
-      s.setInt(1, idMedico);
-      s.setInt(2, idPaciente);
-      s.setDate(3, hora);
+      s.setString(1, idMedico);
+      s.setString(2, idPaciente);
+      s.setString(3, hora);
       s.setDate(4, data);
       s.setString(5, motivo);
       s.setDouble(6, valor);
@@ -51,7 +92,36 @@ public class Consulta {
       s.close();
    }
 
-   public Consulta(int id, int idMedico, int idPaciente, Date hora, Date data, String motivo, double valor) {
+   public static void updateConsulta(String idMedico, String idPaciente, String hora, Date data,
+           String motivo, double valor, String idS) throws Exception {
+      String SQL = "UPDATE consulta"
+              + " SET cd_medico=?, cd_paciente=?, hr_consulta=?,"
+              + " dt_consulta=?, ds_motivo=?, vl_consulta"
+              + " WHERE cd_consulta=?";
+
+      PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+      int id = Integer.parseInt(idS);
+      s.setString(1, idMedico);
+      s.setString(2, idPaciente);
+      s.setString(3, hora);
+      s.setDate(4, data);
+      s.setString(5, motivo);
+      s.setDouble(6, valor);
+      s.setInt(7, id);
+      s.execute();
+      s.close();
+   }
+
+   public static void DeleteConsulta(String idS) throws SQLException {
+      String SQL = "DELETE FROM consulta WHERE cd_consulta=?";
+      PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+      int id = Integer.parseInt(idS);
+      s.setInt(1, id);
+      s.execute();
+      s.close();
+   }
+
+   public Consulta(int id, String idMedico, String idPaciente, String hora, Date data, String motivo, double valor) {
       this.id = id;
       this.idMedico = idMedico;
       this.idPaciente = idPaciente;
@@ -69,27 +139,27 @@ public class Consulta {
       this.id = id;
    }
 
-   public int getIdMedico() {
+   public String getIdMedico() {
       return idMedico;
    }
 
-   public void setIdMedico(int idMedico) {
+   public void setIdMedico(String idMedico) {
       this.idMedico = idMedico;
    }
 
-   public int getIdPaciente() {
+   public String getIdPaciente() {
       return idPaciente;
    }
 
-   public void setIdPaciente(int idPaciente) {
+   public void setIdPaciente(String idPaciente) {
       this.idPaciente = idPaciente;
    }
 
-   public Date getHora() {
+   public String getHora() {
       return hora;
    }
 
-   public void setHora(Date hora) {
+   public void setHora(String hora) {
       this.hora = hora;
    }
 

@@ -53,9 +53,9 @@ public class DatabaseCreatorListener implements ServletContextListener {
       try {
          s.execute("CREATE TABLE consulta(\n"
                  + "    cd_consulta INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
-                 + "    , cd_medico INTEGER NOT NULL\n"
-                 + "    , cd_paciente INTEGER NOT NULL\n"
-                 + "    , hr_consulta TIMESTAMP NOT NULL\n"
+                 + "    , cd_medico VARCHAR(14) NOT NULL\n"
+                 + "    , cd_paciente VARCHAR(11) NOT NULL\n"
+                 + "    , hr_consulta VARCHAR(5) NOT NULL\n"
                  + "    , dt_consulta TIMESTAMP NOT NULL\n"
                  + "    , ds_motivo VARCHAR(100) NOT NULL\n"
                  + "    , vl_consulta NUMERIC(10,2) NOT NULL"
