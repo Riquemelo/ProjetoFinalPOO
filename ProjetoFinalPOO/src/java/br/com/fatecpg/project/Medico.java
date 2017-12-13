@@ -21,11 +21,12 @@ public class Medico {
    private String cidade;
    private String estado;
    
-   public static Medico getMedico(int id) throws Exception{
+   public static Medico getMedico(String idS) throws Exception{
         Medico m = null;
         String SQL = "SELECT * FROM medico"
                 + " WHERE cd_medico=?";
         PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+        int id = Integer.parseInt(idS);
         s.setInt(1, id);
         ResultSet rs = s.executeQuery();
         if(rs.next()){
@@ -92,6 +93,31 @@ public class Medico {
       return m;
    }
    
+   public static void updateMedico(String crm, String nome, String email, String espec,
+                                Date nasc, String tel, String endereco,
+                                String cidade, String estado, String idS)throws Exception{
+        String SQL = "UPDATE medico"
+                + " SET cd_crm_medico=?, nm_medico=?, nm_email=?,"
+                + " nm_especializacao=?, dt_nascimento=?, cd_telefone=?, nm_endereco=?,"
+                + " nm_cidade=?, nm_estado=?"
+                + " WHERE cd_medico=?";
+        
+        PreparedStatement s = Database.getConnection().prepareStatement(SQL);
+        int id = Integer.parseInt(idS);
+        s.setString(1, crm);
+        s.setString(2, nome);
+        s.setString(3, email);
+        s.setString(4, espec);
+        s.setDate(5, nasc);
+        s.setString(6, tel);
+        s.setString(7, endereco);
+        s.setString(8, cidade);
+        s.setString(9, estado);
+        s.setInt(10, id);
+        s.execute();
+        s.close();
+    }
+   
    public static void addMedico(String crm, String nome, String email, String espec,
                                 Date nasc, String tel, String endereco,
                                 String cidade, String estado)throws Exception{
@@ -119,6 +145,8 @@ public class Medico {
       s.execute();
       s.close();
     }
+    
+    
    
     public Medico(int id, String crm, String nome, String email, String espec, Date nasc, String telefone, String endereco, String cidade, String estado) {
         this.id = id;

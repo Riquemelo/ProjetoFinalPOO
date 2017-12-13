@@ -1,18 +1,56 @@
-<%@page import="br.com.fatecpg.project.Paciente"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
    String mensagemExcluir = null;
+   String updateErrorMessage = null;
    if (session.getAttribute("me.login") == null) {
       response.sendRedirect(request.getContextPath() + "/home.jsp");
    }
-   if (request.getParameter("alterar-paciente") != null){
-       
-   }else if(request.getParameter("deletar-paciente") != null){
+   
+   if(request.getParameter("deletar-paciente") != null){
        String id = request.getParameter("id");
        Paciente.DeletePaciente(id);
        mensagemExcluir = "Registro excluido com sucesso";
    }
+   if (request.getParameter("atualizar_paciente") != null){
+        
+      SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+       
+      String cpf = request.getParameter("cpf");
+      String nome = request.getParameter("nome");
+      String rg = request.getParameter("rg");
+      String email = request.getParameter("email");
+      String endereco = request.getParameter("endereco");
+      String cidade = request.getParameter("cidade");
+      String estado = request.getParameter("estado");
+      String sexo = request.getParameter("sexo");
+      String telefone = request.getParameter("telefone");
+
+      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+      Date nascimento = new Date(formatter.parse(request.getParameter("nascimento")).getTime());
+
+      String id = request.getParameter("id");
+      try {
+       
+            Paciente p = Paciente.getPaciente(cpf);
+            p.updatePaciente(cpf, nome, rg,
+                            email, endereco, cidade,
+                            estado, sexo, telefone, nascimento, id);
+            response.sendRedirect(request.getContextPath() + "/listaPaciente.jsp");
+      
+      } catch (Exception ex) {
+         updateErrorMessage = ex.getMessage();
+      }
+  }
+
+   
+     String estado[] = {"", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",
+    "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS",
+    "RR", "SC", "SE", "SP", "TO"};
+     String sexo[] = {"", "Masculino", "Feminino"};
 %>
 <html>
   <head>
@@ -28,7 +66,40 @@
     <div class="container-fluid">
     <center>
     <br><br><br>
+    <%if(request.getParameter("alterar-paciente") != null){
+        String id = request.getParameter("id");
+        Paciente pt = Paciente.getPacienteId(id);%>
+        
+        <%if (updateErrorMessage != null) {%>
+        <div style="color: red;"><%=updateErrorMessage%></div>
+        <%}%>
+        
+        <h2 style='font-style:italic'>Editar Paciente</h2><br>
+        <form>
+            <input type="hidden" name="alterar-paciente" value="Alterar">
+            <h6 style='font-style:italic'>CPF: </h6> <input  type="text" maxlength="11" pattern="[0-9]+$" name="cpf" value="<%=pt.getCpf()%>" required/><br><br>
+          <h6 style='font-style:italic'>Nome:</h6> <input  type="text" value="<%=pt.getNome()%>" maxlength="100" name="nome" required/><br><br>
+          <h6 style='font-style:italic'> Rg: </h6><input value="<%=pt.getRg()%>" type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
+          <h6 style='font-style:italic'>Email:</h6> <input value="<%=pt.getEmail()%>" type="email" maxlength="100" name="email" required/><br><br>
+          <h6 style='font-style:italic'>Endereco:</h6> <input value="<%=pt.getEndereco()%>" type="text" maxlength="100" name="endereco" required/><br><br>
+          <h6 style='font-style:italic'> Cidade:</h6> <input value="<%=pt.getCidade()%>" type="text" maxlength="100" name="cidade" required/><br><br>
+          <h6 style='font-style:italic'>Estado:</h6> <select name="estado" >
+                    <%for (int c = 0; c <= 27; c++){%>
+                       <option value="<%=estado[c]%>" <%if(pt.getEstado().equals(estado[c]))%> selected <%;%>><%=estado[c]%></option>
+                    <%}%>
+                </select><br/><br/>
+                <h6 style='font-style:italic'>Sexo: </h6> <select name="sexo">
+                    <%for(int c = 0; c < 3; c++){%>
+                    <option value="<%=sexo[c]%>" <%if(pt.getSexo().equals(sexo[c]))%> selected <%;%>><%=sexo[c]%></option>
+                    <%}%>
+                </select><br><br>
+          <h6 style='font-style:italic'>Telefone: </h6><input value="<%=pt.getTelefone()%>" type="text" maxlength="15" name="telefone" placeholder="(00)0000-0000" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" required/><br><br>
+          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" required/><br><br>
 
+    <input type="submit" name="atualizar-paciente" value="Update" button type="button" class="btn btn-outline-dark"/>
+  </form>
+    <br/><br/>
+    <%}%>
     <h2 style='font-style:italic'>Pacientes Cadastrados</h2><br><br>
     
     <%if (mensagemExcluir != null) {%>
@@ -56,7 +127,7 @@
         <td>
           <form>
             <input type="hidden" name="id"
-                   value="<%= pl.getId()%>"/>
+                   value="<%=pl.getId()%>"/>
             <input type="submit" name="alterar-paciente"
                    value="Alterar"/>
             <input type="submit" name="deletar-paciente"
