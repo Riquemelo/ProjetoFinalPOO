@@ -68,6 +68,8 @@
 
     <input type="submit" name="cadastrar-paciente" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
   </form>
+      <br><br>
+       <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
   </center>
         </div>
      <%@include file="WEB-INF/jspf/footer.jspf" %>
