@@ -62,10 +62,12 @@
           <h6 style='font-style:italic'>Telefone: </h6><input type="text" maxlength="15" name="telefone" required/><br><br>
           <h6 style='font-style:italic'>Data de Nascimento:</h6> <input type="text" maxlength="15" name="nascimento" required/><br><br>
 
-          <input type="submit" name="cadastrar-paciente" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
-        </form>
-      </center>
-    </div>
-    <%@include file="WEB-INF/jspf/footer.jspf" %>
-  </body>
+    <input type="submit" name="cadastrar-paciente" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
+  </form>
+      <br><br>
+       <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b> 
+  </center>
+        </div>
+     <%@include file="WEB-INF/jspf/footer.jspf" %>
+</body>
 </html>
