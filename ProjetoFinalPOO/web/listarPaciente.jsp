@@ -74,7 +74,7 @@
       <h2 style='font-style:italic'>Editar Paciente</h2><br>
 
       <h6 style='font-style:italic'>Nome:</h6> <input  type="text" value="<%=pt.getNome()%>" maxlength="100" name="nome" required/><br><br>
-      <h6 style='font-style:italic'> Rg: </h6><input value="<%=pt.getRg()%>" type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
+      <h6 style='font-style:italic'> Rg: </h6><input value="<%=pt.getRg()%>" type="text" maxlength="9" name="rg" required/><br><br>
       <h6 style='font-style:italic'>Email:</h6> <input value="<%=pt.getEmail()%>" type="email" maxlength="100" name="email" required/><br><br>
       <h6 style='font-style:italic'>Endereco:</h6> <input value="<%=pt.getEndereco()%>" type="text" maxlength="100" name="endereco" required/><br><br>
       <h6 style='font-style:italic'> Cidade:</h6> <input value="<%=pt.getCidade()%>" type="text" maxlength="100" name="cidade" required/><br><br>

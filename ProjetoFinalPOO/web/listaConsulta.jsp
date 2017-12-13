@@ -75,15 +75,15 @@
           <input required type="text" name="crm" maxlength="13" value="<%=cd.getIdMedico()%>">
           <br><br>
           <h6 style='font-style:italic'> CPF Paciente: </h6>
-          <input required type="text" name="cpf" value="<%=cd.getIdPaciente()%>"/><br/><br>
+          <input required type="text" class="cpf" name="cpf" value="<%=cd.getIdPaciente()%>"/><br/><br>
           <h6 style='font-style:italic'> Hora da Consulta:</h6>
-          <input required type="text" name="hora" value="<%=cd.getHora()%>"/><br/> <br>
+          <input required type="text" class="hora" name="hora" value="<%=cd.getHora()%>"/><br/> <br>
           <h6 style='font-style:italic'> Data da Consulta:</h6>
-          <input required type="text" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" name="data" placeholder="dd/mm/aaaa" value="<%=cd.getData()%>"/><br><br>
+          <input required type="text" class="data" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" name="data" placeholder="dd/mm/aaaa" value="<%=cd.getData()%>"/><br><br>
           <h6 style='font-style:italic'> Motivo:</h6>
           <input required type="text" name="motivo" value="<%=cd.getMotivo()%>"/><br/><br>
           <h6 style='font-style:italic'>Valor:</h6>
-          <input required type="text" name="valor" value="<%=cd.getValor()%>"/><br><br>
+          <input required class="numero" type="text" name="valor" value="<%=cd.getValor()%>"/><br><br>
 
           <input type="submit" name="atualizar-consulta" value="Update" button type="button" class="btn btn-outline-dark"/>
           <br><br><br>

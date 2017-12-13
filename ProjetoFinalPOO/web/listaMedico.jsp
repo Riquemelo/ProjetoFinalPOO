@@ -83,9 +83,9 @@
           <h6 style='font-style:italic'>Especialização:</h6>
           <input required type="text" name="especializacao" value="<%=md.getEspec()%>"/><br/><br>
           <h6 style='font-style:italic'> Data de Nascimento:</h6>
-          <input required type="text" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" name="dataNascimento" placeholder="dd/mm/aaaa" value="<%=md.getNasc()%>"/><br><br>
+          <input required type="text" class="data" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" name="dataNascimento" placeholder="dd/mm/aaaa" value="<%=md.getNasc()%>"/><br><br>
           <h6 style='font-style:italic'>Telefone: </h6>
-          <input required type="text" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" name="telefoneMedico" placeholder="(00)0000-0000" value="<%=md.getTelefone()%>"/> <br><br>
+          <input required type="text" class="telefone" name="telefoneMedico" placeholder="(00)0000-0000" value="<%=md.getTelefone()%>"/> <br><br>
           <h6 style='font-style:italic'> Endereço:</h6>
           <input required type="text" name="enderecoMedico" value="<%=md.getEndereco()%>"/><br/><br>
           <h6 style='font-style:italic'>Cidade:</h6>

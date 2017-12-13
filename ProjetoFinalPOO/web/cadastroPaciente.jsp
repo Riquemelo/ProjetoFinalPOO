@@ -28,7 +28,7 @@
          Paciente p = Paciente.checkPaciente(cpf);
          if (p == null) {
             Paciente.addPaciente(cpf, nome, rg, email, endereco, cidade, estado, sexo, telefone, nascimento);
-            response.sendRedirect(request.getRequestURI());
+
             cadastroComplete = "Paciente cadastrado com sucesso!";
          } else {
             cadastroErrorMessage = "Paciente já cadastrado";
@@ -58,16 +58,18 @@
         <h2 style='font-style:italic'>Cadastrar de Paciente</h2><br>
       </center>
 
-      <%if (cadastroErrorMessage != null) {%>
-      <div style="color: red;"><%=cadastroErrorMessage%></div>
-      <%}else if(cadastroComplete != null) {%>
-        <div style="color: blue;"><%=cadastroComplete%></div>
-      <%}%>
       <center>
-        <form>
-          <h6 style='font-style:italic'>CPF: </h6> <input type="text" maxlength="11" pattern="[0-9]+$" name="cpf" max required/><br><br>
+
+        <%if (cadastroErrorMessage != null) {%>
+        <div style="color: red;"><%=cadastroErrorMessage%></div>
+        <%} else if (cadastroComplete != null) {%>
+        <div style="color: blue;"><%=cadastroComplete%></div>
+        <%}%>
+
+        <form method="post">
+          <h6 style='font-style:italic'>CPF: </h6> <input type="text" class="cpf" maxlength="11" name="cpf" max required/><br><br>
           <h6 style='font-style:italic'>Nome:</h6> <input type="text" maxlength="100" name="nome" required/><br><br>
-          <h6 style='font-style:italic'> Rg: </h6><input type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
+          <h6 style='font-style:italic'> Rg: </h6><input class="rg" type="text" maxlength="9" name="rg" required/><br><br>
           <h6 style='font-style:italic'>Email:</h6> <input type="email" maxlength="100" name="email" required/><br><br>
           <h6 style='font-style:italic'>Endereco:</h6> <input type="text" maxlength="100" name="endereco" required/><br><br>
           <h6 style='font-style:italic'> Cidade:</h6> <input type="text" maxlength="100" name="cidade" required/><br><br>
@@ -81,8 +83,8 @@
             <option value="Masculino">Masculino</option>
             <option value="Feminino">Feminino</option>
           </select><br><br>
-          <h6 style='font-style:italic'>Telefone: </h6><input type="text" maxlength="15" name="telefone" placeholder="(00)0000-0000" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" required/><br><br>
-          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" required/><br><br>
+          <h6 style='font-style:italic'>Telefone: </h6><input type="text" maxlength="15" name="telefone" placeholder="(00)0000-0000" class="telefone" required/><br><br>
+          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input class="data" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" class="data" required/><br><br>
 
           <input type="submit" name="cadastrar-paciente" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
         </form>

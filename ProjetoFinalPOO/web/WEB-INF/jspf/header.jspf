@@ -14,50 +14,37 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<script src='js/custom.js'></script>
+
 <div align="center">
-    
-    <nav style='background-color: black'>
-  <ul  class="nav justify-content-end">
-    <li class="nav-item active">
-        <a class="nav-link" href="#" style="color: #00BFFF">HOME</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#" style="color: #00BFFF">Link1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#" style="color: #00BFFF">Link2</a>
-    </li>
-    </ul>
-</nav>
-    
-    
-   
-   
-    <h1 style='font-style:italic; color: #00BFFF ; background-color: black' ><br>Healthcare <br><br></h1>
-    
-    
-    <br/>
-    <%
-    if(request.getParameter("do-logoff")!= null){
+
+
+  <h1 style='font-style:italic; color: #00BFFF ; background-color: black' ><br>Healthcare <br><br></h1>
+
+
+  <br/>
+  <%
+     if (request.getParameter("do-logoff") != null) {
         session.removeAttribute("me.id");
         session.removeAttribute("me.name");
         session.removeAttribute("me.login");
         session.removeAttribute("me.passwordHash");
-        response.sendRedirect(request.getContextPath()+"/home.jsp");
-    }
-    %>
-    <%if(session.getAttribute("me.login")!=null){%>
-    <form>
-        <h6 style='font-style:italic'> Bem Vindo, <%=session.getAttribute("me.nome")%>! 
-        <input type="submit" name="do-logoff" value="Sair" button type="button" class="btn btn-outline-dark"/></h6>
-        
+        response.sendRedirect(request.getContextPath() + "/home.jsp");
+     }
+  %>
+  <%if (session.getAttribute("me.login") != null) {%>
+  <form>
+    <h6 style='font-style:italic'> Bem Vindo, <%=session.getAttribute("me.nome")%>!
+      <input type="submit" name="do-logoff" value="Sair" button type="button" class="btn btn-outline-dark"/></h6>
+
     <%}%>
-    <%if(Database.getConnectionException()!=null){%>
+    <%if (Database.getConnectionException() != null) {%>
     <div style="color: red;">
-        <h6 style='font-style:italic'> Erro ao tentar conexão com o banco de dados: </h6>
-        <%=Database.getConnectionException().getMessage()%>
+      <h6 style='font-style:italic'> Erro ao tentar conexão com o banco de dados: </h6>
+      <%=Database.getConnectionException().getMessage()%>
     </div>
     <%}%>
-    
+
 
 </div>

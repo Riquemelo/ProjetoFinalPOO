@@ -33,7 +33,7 @@
       try {
 
          Consulta.addConsulta(idMedico, idPaciente, hora, data, motivo, valor);
-         response.sendRedirect(request.getRequestURI() + "/listaConsulta.jsp");
+         response.sendRedirect(request.getContextPath() + "/listaConsulta.jsp");
          cadastroComplete = "Consulta cadastrada com sucesso!";
 
       } catch (Exception e) {
@@ -69,11 +69,11 @@
 
         <form method="post" >
           <h6>CRM:</h6> <input type="text" name="crm" value=<%=crmMedico%> required /><br><br>
-          <h6>CPF:</h6> <input type="text" name="cpf" value=<%=cpfPaciente%> required /><br><br>
-          <h6>Hora:</h6> <input type="text" name="hora" required /><br><br>
-          <h6>Data:</h6> <input type="text" name="data" required /><br><br>
+          <h6>CPF:</h6> <input class="cpf" type="text" name="cpf" value=<%=cpfPaciente%> required /><br><br>
+          <h6>Hora da Consulta:</h6> <input class="hora" type="text" name="hora" required /><br><br>
+          <h6>Data da Consulta:</h6> <input class="data" cpattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" type="text" name="data" required /><br><br>
           <h6>Motivo:</h6> <textarea type="text" name="motivo" rows="4"></textarea><br><br>
-          <h6>Valor:</h6> <input type="text" name="valor" required /><br><br>
+          <h6>Valor:</h6> <input class="numero" type="text" name="valor" required /><br><br>
           <input type="submit" name="cadastrar-consulta" value="Cadastrar" type="button" class="btn btn-outline-dark"/>
         </form>
 
