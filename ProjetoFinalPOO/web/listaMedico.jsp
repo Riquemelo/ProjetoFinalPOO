@@ -52,7 +52,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Healthcare - Médicos</title>
+        <title>Healthcare - Médicos Cadastrados</title>
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
@@ -102,12 +102,12 @@
                 <h6 style='font-style:italic'>Senha do Administrador:</h6>
                     <input type="password" name="adminPass"><br/><br/>
                 
-            <input type="submit" name="atualizarMedico" value="Update" button type="button" class="btn btn-outline-dark"/>
+            <input type="submit" name="atualizarMedico" value="Atualizar" button type="button" class="btn btn-outline-dark"/>
             <br><br><br>
             
         <%}%>
                  
-                 <h2 style='font-style:italic'>Médicos</h2><br><br>
+                 <h2 style='font-style:italic'>Médicos Cadastrados</h2><br><br>
         <%if (mensagemExcluir != null) {%>
             <div style="color: blue;"><%=mensagemExcluir%></div>
         <%}%>

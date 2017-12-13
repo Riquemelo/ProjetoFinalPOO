@@ -54,6 +54,8 @@
 
       <%if (cadastroErrorMessage != null) {%>
       <div style="color: red;"><%=cadastroErrorMessage%></div>
+      <%}else if(cadastroComplete != null) {%>
+        <div style="color: blue;"><%=cadastroComplete%></div>
       <%}%>
       <center>
         <form action="listaPaciente.jsp">

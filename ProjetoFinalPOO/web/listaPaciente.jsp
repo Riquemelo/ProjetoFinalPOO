@@ -1,6 +1,5 @@
 <%@page import="java.sql.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -16,8 +15,6 @@
        mensagemExcluir = "Registro excluido com sucesso";
    }
    if (request.getParameter("atualizar_paciente") != null){
-        
-      SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
        
       String cpf = request.getParameter("cpf");
       String nome = request.getParameter("nome");
@@ -32,13 +29,13 @@
       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
       Date nascimento = new Date(formatter.parse(request.getParameter("nascimento")).getTime());
 
-      String id = request.getParameter("id");
+      String idS = request.getParameter("id");
       try {
        
             Paciente p = Paciente.getPaciente(cpf);
             p.updatePaciente(cpf, nome, rg,
                             email, endereco, cidade,
-                            estado, sexo, telefone, nascimento, id);
+                            estado, sexo, telefone, nascimento, idS);
             response.sendRedirect(request.getContextPath() + "/listaPaciente.jsp");
       
       } catch (Exception ex) {
@@ -60,10 +57,11 @@
   <body>
 
     <%@include file="WEB-INF/jspf/header.jspf" %>
+    
+    <div class="container-fluid">
     <div align="left">
         <b><a href="home.jsp" style='font-style: italic; color: #00BFFF'> <- Voltar</a></b>
     </div>
-    <div class="container-fluid">
     <center>
     <br><br><br>
     <%if(request.getParameter("alterar-paciente") != null){
@@ -75,7 +73,7 @@
         <%}%>
         
         <h2 style='font-style:italic'>Editar Paciente</h2><br>
-        <form>
+        <form method="post">
             <input type="hidden" name="alterar-paciente" value="Alterar">
             <h6 style='font-style:italic'>CPF: </h6> <input  type="text" maxlength="11" pattern="[0-9]+$" name="cpf" value="<%=pt.getCpf()%>" required/><br><br>
           <h6 style='font-style:italic'>Nome:</h6> <input  type="text" value="<%=pt.getNome()%>" maxlength="100" name="nome" required/><br><br>
@@ -94,12 +92,13 @@
                     <%}%>
                 </select><br><br>
           <h6 style='font-style:italic'>Telefone: </h6><input value="<%=pt.getTelefone()%>" type="text" maxlength="15" name="telefone" placeholder="(00)0000-0000" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" required/><br><br>
-          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" required/><br><br>
+          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" required/><br><br>
 
-    <input type="submit" name="atualizar-paciente" value="Update" button type="button" class="btn btn-outline-dark"/>
+    <input type="submit" name="atualizar-paciente" value="Atualizar" button type="button" class="btn btn-outline-dark"/>
   </form>
     <br/><br/>
     <%}%>
+    
     <h2 style='font-style:italic'>Pacientes Cadastrados</h2><br><br>
     
     <%if (mensagemExcluir != null) {%>
