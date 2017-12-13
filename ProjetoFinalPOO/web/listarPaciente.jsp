@@ -15,7 +15,7 @@
       Paciente.DeletePaciente(id);
       mensagemExcluir = "Registro excluido com sucesso";
    }
-   if (request.getParameter("atualizar-paciente") != null) {
+   if (request.getParameter("alterar-paciente") != null) {
 
       String cpf = request.getParameter("cpf");
       String nome = request.getParameter("nome");
@@ -37,7 +37,7 @@
          p.updatePaciente(cpf, nome, rg,
                  email, endereco, cidade,
                  estado, sexo, telefone, nascimento, idS);
-         response.sendRedirect(request.getContextPath() + "/listaPaciente.jsp");
+         response.sendRedirect(request.getContextPath() + "/listarPaciente.jsp");
 
       } catch (Exception ex) {
          updateErrorMessage = ex.getMessage();
@@ -72,6 +72,7 @@
       <%}%>
 
       <h2 style='font-style:italic'>Editar Paciente</h2><br>
+
       <h6 style='font-style:italic'>Nome:</h6> <input  type="text" value="<%=pt.getNome()%>" maxlength="100" name="nome" required/><br><br>
       <h6 style='font-style:italic'> Rg: </h6><input value="<%=pt.getRg()%>" type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
       <h6 style='font-style:italic'>Email:</h6> <input value="<%=pt.getEmail()%>" type="email" maxlength="100" name="email" required/><br><br>
@@ -90,11 +91,12 @@
       <h6 style='font-style:italic'>Telefone: </h6><input value="<%=pt.getTelefone()%>" type="text" maxlength="15" name="telefone" placeholder="(00)0000-0000" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" required/><br><br>
       <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" required/><br><br>
 
+      <input type="submit" name="alterar-paciente" value="Update" button type="button" class="btn btn-outline-dark"/>
+      <br><br><br>
+
+      <%}%>
       <center>
-        <br><br><br>
-
-
-
+        <h2 style='font-style:italic'>Pacientes Cadastradas</h2><br><br>
         <%if (mensagemExcluir != null) {%>
         <div style="color: blue;"><%=mensagemExcluir%></div>
         <%}%>
@@ -136,7 +138,7 @@
               </form>
             </td>
             <td>
-              <button><a href="selecaoMedico.jsp?idPaciente=<%=pl.getCpf()%>">Agendar</a></button>
+              <button><a class="no-effect" href="selecaoMedico.jsp?idPaciente=<%=pl.getCpf()%>">Agendar</a></button>
             </td>
           </tr>
 
@@ -155,11 +157,11 @@
           <%} catch (Exception e) {%>
           <div style="color: red;"><%=e.getMessage()%></div>
           <%}%>
-        </table><br>
+        </table>
 
       </center>
-    </div><br>
-    <%@include file="WEB-INF/jspf/footer.jspf" %>
 
+
+    </div>
   </body>
 </html>
