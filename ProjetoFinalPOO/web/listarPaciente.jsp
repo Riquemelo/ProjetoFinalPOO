@@ -16,7 +16,7 @@
       mensagemExcluir = "Registro excluido com sucesso";
    }
    if (request.getParameter("alterar-paciente") != null) {
-
+      SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
       String cpf = request.getParameter("cpf");
       String nome = request.getParameter("nome");
       String rg = request.getParameter("rg");
@@ -27,8 +27,7 @@
       String sexo = request.getParameter("sexo");
       String telefone = request.getParameter("telefone");
 
-      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-      Date nascimento = new Date(formatter.parse(request.getParameter("nascimento")).getTime());
+      Date nascimento = new Date(format.parse(request.getParameter("nascimento")).getTime());
 
       String idS = request.getParameter("id");
       try {
@@ -89,7 +88,7 @@
         <%}%>
       </select><br><br>
       <h6 style='font-style:italic'>Telefone: </h6><input value="<%=pt.getTelefone()%>" type="text" maxlength="15" name="telefone" placeholder="(00)0000-0000" pattern="^\([1-9]{2}\)[2-9][0-9]{3,4}\-[0-9]{4}$" required/><br><br>
-      <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" required/><br><br>
+      <h6 style='font-style:italic'>Data de Nascimento:</h6> <input value="<%=pt.getNascimento()%>" type="text" maxlength="15" placeholder="dd/mm/aaaa" name="nascimento" class="data" pattern="^[0-3][0-9]\/[0-1][0-9]\/[0-2][0-9]{3}$" required/><br><br>
 
       <input type="submit" name="alterar-paciente" value="Update" button type="button" class="btn btn-outline-dark"/>
       <br><br><br>
