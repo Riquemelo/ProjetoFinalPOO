@@ -11,27 +11,23 @@
    String cadastroErrorMessage = null;
    if (request.getParameter("cadastrar-paciente") != null) {
 
-      String cpfS = request.getParameter("cpf");
+      String cpf = request.getParameter("cpf");
       String nome = request.getParameter("nome");
-      String rgS = request.getParameter("rg");
+      String rg = request.getParameter("rg");
       String email = request.getParameter("email");
       String endereco = request.getParameter("endereco");
       String cidade = request.getParameter("cidade");
       String estado = request.getParameter("estado");
       String sexo = request.getParameter("sexo");
-      String telefoneS = request.getParameter("telefone");
-      String nascimentoS = request.getParameter("nascimento");
+      String telefone = request.getParameter("telefone");
 
       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-      Date nascimento = new Date(formatter.parse(request.getParameter("nascimentoS")).getTime());
-
-      int cpf = Integer.parseInt(cpfS);
-      int rg = Integer.parseInt(rgS);
-      int telefone = Integer.parseInt(telefoneS);
+      Date nascimento = new Date(formatter.parse(request.getParameter("nascimento")).getTime());
 
       try {
          Paciente.addPaciente(cpf, nome, rg, email, endereco, cidade, estado, sexo, telefone, nascimento);
          response.sendRedirect(request.getRequestURI());
+         cadastroComplete = "Paciente cadastrado com sucesso!";
       } catch (Exception e) {
          cadastroErrorMessage = e.getMessage();
       }
@@ -43,33 +39,33 @@
     <title>Healthcare - Cadastro de Pacientes</title>
   </head>
   <body>
-       <%@include file="WEB-INF/jspf/header.jspf" %>
-        <div class="container-fluid">
-  <center>
-      <br><br>
-      <h2 style='font-style:italic'>Cadastrar de Paciente</h2><br>
-  </center>
+    <%@include file="WEB-INF/jspf/header.jspf" %>
+    <div class="container-fluid">
+      <center>
+        <br><br>
+        <h2 style='font-style:italic'>Cadastrar de Paciente</h2><br>
+      </center>
 
-  <%if (cadastroErrorMessage != null) {%>
-  <div style="color: red;"><%=cadastroErrorMessage%></div>
-  <%}%>
-  <center>
-  <form action="listaPaciente.jsp">
-      <h6 style='font-style:italic'>CPF: </h6> <input type="text" maxlength="11" pattern="[0-9]+$" name="cpf" max required/><br><br>
-      <h6 style='font-style:italic'>Nome:</h6> <input type="text" maxlength="100" name="nome" required/><br><br>
-    <h6 style='font-style:italic'> Rg: </h6><input type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
-     <h6 style='font-style:italic'>Email:</h6> <input type="email" maxlength="100" name="email" required/><br><br>
-     <h6 style='font-style:italic'>Endereco:</h6> <input type="text" maxlength="100" name="endereco" required/><br><br>
-    <h6 style='font-style:italic'> Cidade:</h6> <input type="text" maxlength="100" name="cidade" required/><br><br>
-     <h6 style='font-style:italic'>Estado: </h6><input type="text" maxlength="100" name="estado" required/><br><br>
-     <h6 style='font-style:italic'>Sexo: </h6><input type="text" maxlength="30" name="sexo" required/><br><br>
-     <h6 style='font-style:italic'>Telefone: </h6><input type="text" maxlength="15" name="telefone" required/><br><br>
-     <h6 style='font-style:italic'>Data de Nascimento:</h6> <input type="text" maxlength="15" name="nascimento" required/><br><br>
+      <%if (cadastroErrorMessage != null) {%>
+      <div style="color: red;"><%=cadastroErrorMessage%></div>
+      <%}%>
+      <center>
+        <form action="listaPaciente.jsp">
+          <h6 style='font-style:italic'>CPF: </h6> <input type="text" maxlength="11" pattern="[0-9]+$" name="cpf" max required/><br><br>
+          <h6 style='font-style:italic'>Nome:</h6> <input type="text" maxlength="100" name="nome" required/><br><br>
+          <h6 style='font-style:italic'> Rg: </h6><input type="text" maxlength="9" pattern="[0-9]+$" name="rg" required/><br><br>
+          <h6 style='font-style:italic'>Email:</h6> <input type="email" maxlength="100" name="email" required/><br><br>
+          <h6 style='font-style:italic'>Endereco:</h6> <input type="text" maxlength="100" name="endereco" required/><br><br>
+          <h6 style='font-style:italic'> Cidade:</h6> <input type="text" maxlength="100" name="cidade" required/><br><br>
+          <h6 style='font-style:italic'>Estado: </h6><input type="text" maxlength="100" name="estado" required/><br><br>
+          <h6 style='font-style:italic'>Sexo: </h6><input type="text" maxlength="30" name="sexo" required/><br><br>
+          <h6 style='font-style:italic'>Telefone: </h6><input type="text" maxlength="15" name="telefone" required/><br><br>
+          <h6 style='font-style:italic'>Data de Nascimento:</h6> <input type="text" maxlength="15" name="nascimento" required/><br><br>
 
-    <input type="submit" name="cadastrar-paciente" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
-  </form>
-  </center>
-        </div>
-     <%@include file="WEB-INF/jspf/footer.jspf" %>
-</body>
+          <input type="submit" name="cadastrar-paciente" value="Cadastrar" button type="button" class="btn btn-outline-dark"/>
+        </form>
+      </center>
+    </div>
+    <%@include file="WEB-INF/jspf/footer.jspf" %>
+  </body>
 </html>
